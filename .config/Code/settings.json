@@ -1,0 +1,50 @@
+{
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb",
+        "git-rebase-todo": "default"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "redhat.telemetry.enabled": false,
+    "files.associations": {
+        "*.project": "cabal",
+        "*.def": "python"
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "gitlens.advanced.fileHistoryFollowsRenames": true,
+    "cmake.buildDirectory": "${workspaceFolder}/_build",
+    "cmake.configureOnOpen": true,
+    "vim.enableNeovim": true,
+    "vim.neovimConfigPath": "/home/ankurs4/.config/nvim/init.vim",
+    "vim.neovimUseConfigFile": true,
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+        "before": ["j", "j"],
+        "after": ["<Esc>"]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+        "before": ["^"],
+        "commands": ["}"]
+        },
+        {
+        "before": ["å"],
+        "commands": ["{"]
+        },
+        {
+        "before": ["K"],
+        "commands": ["lineBreakInsert"],
+        "silent": true
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false
+    } 
+}
