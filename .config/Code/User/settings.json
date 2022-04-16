@@ -29,12 +29,16 @@
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
+        "before": ["<leader>", "e"],
+        "after": ["$"]
+        },
+        {
         "before": ["^"],
-        "commands": ["}"]
+        "after": ["}"]
         },
         {
         "before": ["å"],
-        "commands": ["{"]
+        "after": ["{"]
         },
         {
         "before": ["K"],
