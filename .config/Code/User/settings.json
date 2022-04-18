@@ -46,6 +46,20 @@
         "silent": true
         }
     ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+        "before": ["<leader>", "e"],
+        "after": ["$"]
+        },
+        {
+        "before": ["^"],
+        "after": ["}"]
+        },
+        {
+        "before": ["å"],
+        "after": ["{"]
+        }
+    ],
     "vim.leader": "<space>",
     "vim.handleKeys": {
         "<C-a>": false,

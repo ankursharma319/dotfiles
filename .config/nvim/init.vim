@@ -9,7 +9,7 @@ nnoremap <SPACE> <Nop>
 let mapleader = " "
 
 " go to end of line
-nnoremap <leader>e $
+noremap <leader>e $
 
 " go to normal mode from insert mode
 inoremap jj <Esc> 
@@ -18,8 +18,8 @@ inoremap jj <Esc>
 nnoremap K O<Esc>
 
 " paragraph movement
-nnoremap ^ }
-nnoremap å {
+noremap ^ }
+noremap å {
 " nnoremap ~ ]
 " nnoremap Å [
 
