@@ -62,6 +62,21 @@ vim.api.nvim_set_keymap(
 -- xmodmap -e "keycode 35 = asciicircum"
 -- xmodmap -e "keycode 35 shift = asciicircum asciitilde"
 
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>tt",
+  ":NvimTreeToggle<CR>",
+  { noremap = true }
+)
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>tf",
+  ":NvimTreeFocus<CR>",
+  { noremap = true }
+)
+
+
 ---=================================================================================
 ---general
 ---=================================================================================
@@ -194,6 +209,11 @@ require('packer').startup(function(use)
     'nvim-tree/nvim-tree.lua',
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+  -- or                            , branch = '0.1.x',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
 end)
 
 -- vim.cmd("colorscheme catppuccin")
@@ -211,3 +231,11 @@ require("nvim-tree").setup({
     enable = true,
   },
 })
+
+-- telescope
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
