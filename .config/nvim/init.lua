@@ -110,6 +110,10 @@ vim.o.backup = false
 -- Do not let cursor scroll below or above N number of lines when scrolling.
 vim.o.scrolloff = 10
 
+-- new window should come below or to the right
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 -- Do not wrap lines. Allow long lines to extend as far as the line goes.
 vim.wo.wrap = false
 
@@ -150,3 +154,58 @@ vim.o.wildignore='*.o,*.obj,*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.i
 
 -- configure Vim to use brighter colors
 vim.o.background = 'dark'
+
+--- theme stuff
+-- TODO move this out to native lua
+vim.cmd([[
+  "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+  "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+  "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+  if (empty($TMUX))
+    if (has("nvim"))
+      "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+      let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
+    "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+    "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+    " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+    if (has("termguicolors"))
+      set termguicolors
+    endif
+  endif  
+]])
+
+----------------------------
+-- plugins stuff
+----------------------------
+
+-- Only required if you have packer configured as `opt`
+vim.cmd [[packadd packer.nvim]]
+
+require('packer').startup(function(use)
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
+  use 'nvim-tree/nvim-web-devicons'
+  use "EdenEast/nightfox.nvim"
+  use 'feline-nvim/feline.nvim'
+  -- use { "catppuccin/nvim", as = "catppuccin" }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+end)
+
+-- vim.cmd("colorscheme catppuccin")
+vim.cmd("colorscheme nightfox")
+require('user.ui.feline')
+
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- empty setup using defaults
+require("nvim-tree").setup({
+  diagnostics = {
+    enable = true,
+  },
+})
