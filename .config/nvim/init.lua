@@ -188,6 +188,7 @@ require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use "EdenEast/nightfox.nvim"
   use 'feline-nvim/feline.nvim'
+  use 'nanozuki/tabby.nvim'
   -- use { "catppuccin/nvim", as = "catppuccin" }
   use {
     'nvim-tree/nvim-tree.lua',
@@ -198,6 +199,7 @@ end)
 -- vim.cmd("colorscheme catppuccin")
 vim.cmd("colorscheme nightfox")
 require('user.ui.feline')
+require('user.ui.tabby')
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
