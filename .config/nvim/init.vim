@@ -66,7 +66,8 @@ set smartcase
 set incsearch
 
 " use y and p with the system clipboard
-set clipboard=unnamedplus
+" try setting to unnamed if unnamedplus does not work
+set clipboard=unnamed
 
 " Highlight cursor line underneath the cursor horizontally.
 " set cursorline
