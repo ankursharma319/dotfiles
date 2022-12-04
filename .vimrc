@@ -75,7 +75,7 @@ set clipboard=unnamedplus
 set cursorline
 
 " Highlight cursor line underneath the cursor vertically.
-set cursorcolumn
+" set cursorcolumn
 
 " Set shift width to 4 spaces.
 set shiftwidth=4
@@ -110,6 +110,25 @@ set hlsearch
 " Set the commands to save in history default number is 20.
 set history=1000
 
+" Show file stats
+set ruler
+
+" Blink cursor on error instead of beeping (grr)
+set visualbell
+
+" Encoding
+set encoding=utf-8
+
+" Rendering
+set ttyfast
+
+" enable mouse support (might not work well on Mac OS X)
+set mouse=a
+
+" Instead of failing a command because of unsaved changes, instead raise a
+" dialogue asking if you wish to save changed files.
+set confirm
+
 " Enable auto completion menu after pressing TAB.
 set wildmenu
 
@@ -119,3 +138,7 @@ set wildmode=list:longest
 " There are certain files that we would never want to edit with Vim.
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+
+" configure Vim to use brighter colors
+set background=dark
