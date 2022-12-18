@@ -325,13 +325,22 @@ require("nvim-tree").setup({
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+
 require('telescope').setup {
   defaults = {
     mappings = {
+      n = {
+        ["<C-h>"] = "which_key",
+        ["<leader>jj"] = require('telescope.actions').close,
+        ["<leader>fc"] = require('telescope.actions').close,
+    	  ['<C-d>'] = require('telescope.actions').delete_buffer
+      }, -- n
       i = {
+        ["<C-h>"] = "which_key",
         ['<C-u>'] = false,
         ['<C-d>'] = false,
-      },
+        -- ['<C-d>'] = require('telescope.actions').delete_buffer
+      } -- i
     },
   },
 }
@@ -340,7 +349,6 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 
 local builtin = require('telescope.builtin')
-
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>fgf', builtin.git_files, { desc = '[F]ind [G]it [F]iles' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
@@ -456,6 +464,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+  vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist)
   vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
@@ -488,9 +497,6 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
-
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 vim.diagnostic.config({
   virtual_text = true,
