@@ -1,3 +1,89 @@
+----------------------------
+-- plugins stuff
+----------------------------
+
+-- Install packer
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local is_bootstrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  is_bootstrap = true
+  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  -- Only required if you have packer configured as `opt`
+  vim.cmd [[packadd packer.nvim]]
+end
+
+require('packer').startup(function(use)
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
+  use 'nvim-tree/nvim-web-devicons'
+  use 'nvim-lualine/lualine.nvim'
+  use "EdenEast/nightfox.nvim"
+  -- use { "catppuccin/nvim", as = "catppuccin" }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+  -- or                            , branch = '0.1.x',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+        ts_update()
+    end,
+  }
+  -- Git related plugins
+  use 'tpope/vim-fugitive'
+  use 'lewis6991/gitsigns.nvim'
+
+  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    requires = {
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},
+      {'williamboman/mason.nvim'},
+      {'williamboman/mason-lspconfig.nvim'},
+  
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'hrsh7th/cmp-nvim-lua'},
+  
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},
+      {'rafamadriz/friendly-snippets'},
+    }
+  }
+  if is_bootstrap then
+    require('packer').sync()
+  end
+end)
+
+-- When we are bootstrapping a configuration, it doesn't
+-- make sense to execute the rest of the init.lua.
+--
+-- You'll need to restart nvim, and then it will work.
+if is_bootstrap then
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
+  return
+end
+
 ---=================================================================================
 ---key combos
 ---==============================================================================
@@ -167,6 +253,9 @@ vim.o.wildmode='list:longest'
 -- Wildmenu will ignore files with these extensions.
 vim.o.wildignore='*.o,*.obj,*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx'
 
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
+
 -- configure Vim to use brighter colors
 vim.o.background = 'dark'
 
@@ -191,48 +280,35 @@ vim.cmd([[
 ]])
 
 ----------------------------
--- plugins stuff
+-- plugins stuff (part 2)
 ----------------------------
-
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
-
-require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-  use 'nvim-tree/nvim-web-devicons'
-  use "EdenEast/nightfox.nvim"
-  use 'feline-nvim/feline.nvim'
-  use 'nvim-lualine/lualine.nvim'
-  use 'nanozuki/tabby.nvim'
-  -- use { "catppuccin/nvim", as = "catppuccin" }
-  use {
-    'nvim-tree/nvim-tree.lua',
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  }
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
-  -- or                            , branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function()
-        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-        ts_update()
-    end,
-  }
-end)
 
 -- vim.cmd("colorscheme catppuccin")
 vim.cmd("colorscheme nightfox")
 
--- require('user.ui.feline')
--- require('feline').setup()
-
 require('lualine').setup()
 
--- require('user.ui.tabby')
+-- Enable Comment.nvim
+require('Comment').setup()
+
+-- Enable `lukas-reineke/indent-blankline.nvim`
+-- See `:help indent_blankline.txt`
+require('indent_blankline').setup {
+  char = '┊',
+  show_trailing_blankline_indent = false,
+}
+
+-- Gitsigns
+-- See `:help gitsigns.txt`
+require('gitsigns').setup {
+  signs = {
+    add = { text = '+' },
+    change = { text = '~' },
+    delete = { text = '_' },
+    topdelete = { text = '‾' },
+    changedelete = { text = '~' },
+  },
+}
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
@@ -247,11 +323,40 @@ require("nvim-tree").setup({
 
 -- telescope
 
+-- [[ Configure Telescope ]]
+-- See `:help telescope` and `:help telescope.setup()`
+require('telescope').setup {
+  defaults = {
+    mappings = {
+      i = {
+        ['<C-u>'] = false,
+        ['<C-d>'] = false,
+      },
+    },
+  },
+}
+
+-- Enable telescope fzf native, if installed
+pcall(require('telescope').load_extension, 'fzf')
+
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
+vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
+
+vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[ ] [F]ind existing [b]uffers' })
+vim.keymap.set('n', '<leader>/', function()
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = '[/] Fuzzily search in current buffer]' })
 
 -- treesitter
 
@@ -268,6 +373,8 @@ require'nvim-treesitter.configs'.setup {
 
   ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
   -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+
+  indent = { enable = true },
 
   highlight = {
     -- `false` will disable the whole extension
@@ -287,5 +394,15 @@ require'nvim-treesitter.configs'.setup {
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
+  },
+
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = '<c-space>',
+      node_incremental = '<c-space>',
+      scope_incremental = '<c-s>',
+      node_decremental = '<c-backspace>',
+    },
   },
 }
