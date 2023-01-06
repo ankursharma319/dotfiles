@@ -363,7 +363,7 @@ pcall(require('telescope').load_extension, 'fzf')
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
-vim.keymap.set('n', '<leader>fgf', builtin.git_files, { desc = '[F]ind [G]it [F]iles' })
+vim.keymap.set('n', '<leader>fF', builtin.git_files, { desc = '[F]ind [G]it [F]iles' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
 vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -371,7 +371,11 @@ vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagno
 
 vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[ ] [F]ind existing [b]uffers' })
+
+vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = '[F]ind Git [S]tatus' })
+vim.keymap.set('n', '<leader>ft', builtin.treesitter, { desc = '[F]ind [T]reesitter' })
+vim.keymap.set('n', '<leader>fb', builtin.builtin, { desc = '[F]ind [B]uiltins' })
+
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -474,19 +478,24 @@ lsp.on_attach(function(client, bufnr)
       return
   end
 
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+  vim.keymap.set("n", '<leader>D', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set("n", 'gD', vim.lsp.buf.declaration, opts)
+  vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
+  vim.keymap.set("n", "<leader>flr", require('telescope.builtin').lsp_references, opts)
+  vim.keymap.set("n", "<leader>fld", require('telescope.builtin').lsp_definitions, opts)
+  vim.keymap.set("n", "<leader>fli", require('telescope.builtin').lsp_implementations, opts)
+  vim.keymap.set("n", "<leader>fltd", require('telescope.builtin').lsp_type_definitions, opts)
+  vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+  vim.keymap.set("n", "<leader>fls", require('telescope.builtin').lsp_document_symbols, opts)
+  vim.keymap.set("n", "<leader>flws", require('telescope.builtin').lsp_workspace_symbols, opts)
   vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist)
   vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
   vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "gr", require('telescope.builtin').lsp_references, opts)
-  vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-  vim.keymap.set("n", '<leader>D', vim.lsp.buf.type_definition, opts)
-  vim.keymap.set("n", 'gD', vim.lsp.buf.declaration, opts)
-  vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 
