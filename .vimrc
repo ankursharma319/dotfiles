@@ -142,3 +142,7 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 " configure Vim to use brighter colors
 set background=dark
+
+" https://stackoverflow.com/questions/6488683/how-to-change-the-cursor-between-normal-and-insert-modes-in-vim
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
