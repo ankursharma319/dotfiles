@@ -18,6 +18,10 @@ require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use "EdenEast/nightfox.nvim"
+  use { "ellisonleao/gruvbox.nvim" }
+  use 'Iron-E/nvim-highlite'
+  use { 'bluz71/vim-moonfly-colors', branch = 'cterm-compat' }
+
   -- use { "catppuccin/nvim", as = "catppuccin" }
   use {
     'nvim-tree/nvim-tree.lua',
@@ -273,33 +277,31 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.background = 'dark'
 
 --- theme stuff
--- TODO move this out to native lua
-vim.cmd([[
-  "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-  "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-  "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-  if (empty($TMUX))
-    if (has("nvim"))
-      "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-      let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-    endif
-    "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-    "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-    " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-    if (has("termguicolors"))
-      set termguicolors
-    endif
-  endif  
-]])
+local true_color_supported = (vim.env.COLORTERM == "truecolor") or (vim.env.COLORTERM == "24bit")
+if true_color_supported then
+  vim.opt.termguicolors = true
+end
 
 ----------------------------
 -- plugins stuff (part 2)
 ----------------------------
 
--- vim.cmd("colorscheme catppuccin")
-vim.cmd("colorscheme nightfox")
+if true_color_supported then
+  -- vim.cmd("colorscheme catppuccin")
+  -- vim.cmd("colorscheme gruvbox")
+  vim.cmd("colorscheme nightfox")
+else
+  vim.cmd("colorscheme highlite")
+  -- vim.cmd("colorscheme moonfly")
+end
 
-require('lualine').setup()
+require('lualine').setup({
+  options = {
+    icons_enabled = false,
+    component_separators = { left = '|', right = '|'},
+    section_separators = { left = '', right = ''},
+  }
+})
 
 -- Enable Comment.nvim
 require('Comment').setup()
@@ -331,6 +333,44 @@ vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup({
   diagnostics = {
     enable = true,
+  },
+  renderer = {
+    icons = {
+      webdev_colors = true,
+      symlink_arrow = " ➛ ",
+      show = {
+        file = false,
+        folder = true,
+        folder_arrow = true,
+        git = true,
+        modified = true,
+      },
+      glyphs = {
+        default = "▬",
+        symlink = "⇛",
+        bookmark = "★",
+        modified = "●",
+        folder = {
+          arrow_closed = ">",
+          arrow_open = "v",
+          default = "▤",
+          open = "▤",
+          empty = "⊙",
+          empty_open = "᭵",
+          symlink = "⇛",
+          symlink_open = "⇛",
+        },
+        git = {
+          unstaged = "✗",
+          staged = "✓",
+          unmerged = "▱",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "✘",
+          ignored = "◌",
+        },
+      },
+    },
   },
 })
 
