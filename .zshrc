@@ -9,6 +9,9 @@ setopt HIST_IGNORE_ALL_DUPS
 # History won't show duplicates on search.
 setopt HIST_FIND_NO_DUPS
 
+#allow tab completion in the middle of a word
+setopt COMPLETE_IN_WORD
+
 # https://zsh-prompt-generator.site
 PROMPT="%B%F{34}%n%f%b%B%F{34}@%f%b%B%F{34}%m%f%b%B: %b%B%F{75}%~%f%b $ "
 
