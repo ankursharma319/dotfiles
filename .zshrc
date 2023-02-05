@@ -27,3 +27,6 @@ fpath=($ZSH_COMPLETIONS_DIR $fpath)
 autoload -U compinit
 compinit
 
+autoload -U select-word-style
+select-word-style bash
+
