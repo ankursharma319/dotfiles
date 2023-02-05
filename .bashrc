@@ -32,3 +32,7 @@ alias ssh="ssh -o SendEnv=COLORTERM"
 # https://robotmoon.com/bash-prompt-generator/
 export PS1="\[$(tput setaf 34)\]\u\[$(tput setaf 34)\]@\[$(tput setaf 34)\]\h: \[$(tput setaf 75)\]\w \[$(tput sgr0)\]$ "
 
+# for nix-env utf-8 locale issues
+# also make sure to install nix-env -ia nixpkgs_unstable.glibcLocales
+# export LOCALE_ARCHIVE="$HOME/.nix-profile/lib/locale/locale-archive"
+
