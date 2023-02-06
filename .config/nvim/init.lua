@@ -70,6 +70,9 @@ require('packer').startup(function(use)
       {'rafamadriz/friendly-snippets'},
     }
   }
+  -- for status bar to show current code context
+  use "SmiteshP/nvim-navic"
+
   if is_bootstrap then
     require('packer').sync()
   end
@@ -219,8 +222,10 @@ vim.opt.shiftwidth = 4
 -- Set tab width to 4 columns.
 vim.opt.tabstop = 4
 
+vim.o.smartindent = false
+
 -- Use space characters instead of tabs.
--- vim.bo.expandtab = true
+vim.o.expandtab = true
 
 -- Do not save backup files.
 vim.o.backup = false
@@ -295,11 +300,20 @@ else
   -- vim.cmd("colorscheme moonfly")
 end
 
+
+local navic = require("nvim-navic")
+navic.setup()
+
 require('lualine').setup({
   options = {
     icons_enabled = false,
     component_separators = { left = '|', right = '|'},
     section_separators = { left = '', right = ''},
+  },
+  sections = {
+    lualine_c = {
+      "filename", { navic.get_location, cond = navic.is_available },
+    }
   }
 })
 
@@ -486,8 +500,12 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
   'clangd',
+  'cmake', -- for cmake the language
   'tsserver',
   'eslint',
+  'html',
+  'jsonls',
+  'lemminx', --xml language server
 })
 
 local cmp = require('cmp')
@@ -561,6 +579,9 @@ lsp.on_attach(function(client, bufnr)
     end
   end, { desc = 'Format current buffer with LSP' })
 
+  -- if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  -- end
 end)
 
 lsp.setup()
