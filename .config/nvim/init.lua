@@ -45,7 +45,7 @@ require('packer').startup(function(use)
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'lewis6991/gitsigns.nvim'
-
+  use 'APZelos/blamer.nvim'
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
 
@@ -324,6 +324,11 @@ require('gitsigns').setup {
     changedelete = { text = '~' },
   },
 }
+
+-- Git blamer
+vim.g.blamer_enabled = true
+vim.g.blamer_show_in_visual_modes = false
+vim.g.blamer_show_in_insert_modes = false
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
