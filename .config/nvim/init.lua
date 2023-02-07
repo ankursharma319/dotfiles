@@ -506,6 +506,7 @@ lsp.ensure_installed({
   'html',
   'jsonls',
   'lemminx', --xml language server
+  'rnix',
 })
 
 local cmp = require('cmp')
@@ -579,9 +580,9 @@ lsp.on_attach(function(client, bufnr)
     end
   end, { desc = 'Format current buffer with LSP' })
 
-  -- if client.server_capabilities.documentSymbolProvider then
+  if client.server_capabilities.documentSymbolProvider then
     navic.attach(client, bufnr)
-  -- end
+  end
 end)
 
 lsp.setup()
