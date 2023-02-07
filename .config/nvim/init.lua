@@ -169,6 +169,13 @@ vim.api.nvim_set_keymap(
   { noremap = true }
 )
 
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>to",
+  ":NvimTreeFindFile<CR>",
+  { noremap = true }
+)
+
 -- move selected blockes of code up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -343,8 +350,9 @@ require('gitsigns').setup {
 vim.g.blamer_enabled = true
 vim.g.blamer_show_in_visual_modes = false
 vim.g.blamer_show_in_insert_modes = false
+vim.g.blamer_delay = 5000
 
--- disable netrw at the very start of your init.lua (strongly advised)
+-- disable netrw at the very start of your init.lua (strongly advised by nvim-tree)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
