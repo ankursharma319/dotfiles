@@ -347,7 +347,8 @@ require('gitsigns').setup {
 }
 
 -- Git blamer
-vim.g.blamer_enabled = true
+vim.g.blamer_enabled = false
+-- use :BlamerToggle to enable temporarily, because slows things down
 vim.g.blamer_show_in_visual_modes = false
 vim.g.blamer_show_in_insert_modes = false
 vim.g.blamer_delay = 5000
