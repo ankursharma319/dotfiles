@@ -60,12 +60,110 @@
         },
         {
             "before": [
-                "K"
+                "<C-u>"
+            ],
+            "after": [
+                "<C-u>",
+                "z",
+                "z"
+            ]
+        },
+        {
+            "before": [
+                "<C-d>"
+            ],
+            "after": [
+                "<C-d>",
+                "z",
+                "z"
+            ]
+        },
+        {
+            "before": [
+                "n"
+            ],
+            "after": [
+                "n",
+                "z",
+                "z",
+                "z",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "N"
+            ],
+            "after": [
+                "N",
+                "z",
+                "z",
+                "z",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "c"
             ],
             "commands": [
-                "lineBreakInsert"
+                "workbench.action.showCommands"
             ],
             "silent": true
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "f"
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<space>"
+            ],
+            "commands": [
+                "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "t",
+                "t"
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "t",
+                "f"
+            ],
+            "commands": [
+                "workbench.action.focusSideBar",
+                "workbench.files.action.focusFilesExplorer"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "t",
+                "o"
+            ],
+            "commands": [
+                "workbench.action.focusSideBar",
+                "workbench.files.action.focusFilesExplorer",
+                "workbench.files.action.showActiveFileInExplorer"
+            ]
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
@@ -92,6 +190,22 @@
             ],
             "after": [
                 "{"
+            ]
+        },
+        {
+            "before": [
+                "J"
+            ],
+            "commands": [
+                "editor.action.moveLinesDownAction"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "editor.action.moveLinesUpAction"
             ]
         }
     ],

@@ -126,9 +126,6 @@ vim.api.nvim_set_keymap(
 )
 
 -- insert line without going to insert mode
--- nnoremap K O<Esc>
--- nnoremap <leader>O O<Esc>
--- nnoremap <leader>o o<Esc>
 vim.api.nvim_set_keymap(
     "n",
     "<leader>O",
@@ -454,6 +451,7 @@ vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find exist
 vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = '[F]ind Git [S]tatus' })
 vim.keymap.set('n', '<leader>ft', builtin.treesitter, { desc = '[F]ind [T]reesitter' })
 vim.keymap.set('n', '<leader>fb', builtin.builtin, { desc = '[F]ind [B]uiltins' })
+vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = '[F]ind [C]ommands' })
 
 vim.keymap.set('n', '<leader>/', function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
