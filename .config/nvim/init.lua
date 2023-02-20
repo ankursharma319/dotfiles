@@ -544,7 +544,11 @@ lsp.ensure_installed({
   'jsonls',
   'lemminx', --xml language server
   'rnix',
+  'lua_ls',
 })
+
+-- configure lua ls for neovim
+lsp.nvim_workspace()
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
