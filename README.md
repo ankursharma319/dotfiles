@@ -16,6 +16,8 @@ For VsCode:
 ```bash
 # on linux
 ln -s /home/ankurs4/src/dotfiles/.config/Code/User/settings.json /home/ankurs4/.config/Code/User/settings.json
+ln -s /home/ankurs4/src/dotfiles/.config/Code/User/keybindings.json /home/ankurs4/.config/Code/User/keybindings.json
 # on mac
 ln -s /Users/ankurs4/src/dotfiles/.config/Code/User/settings.json "/Users/ankurs4/Library/Application Support/Code/User/settings.json"
+ln -s /Users/ankurs4/src/dotfiles/.config/Code/User/keybindings.json "Users/ankurs4/Library/Application Support/Code/User/keybindings.json
 ```
