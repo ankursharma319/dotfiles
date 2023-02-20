@@ -23,41 +23,76 @@
     "vim.hlsearch": true,
     "vim.insertModeKeyBindings": [
         {
-        "before": ["j", "j"],
-        "after": ["<Esc>"]
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
         }
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-        "before": ["<leader>", "e"],
-        "after": ["$"]
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "after": [
+                "$"
+            ]
         },
         {
-        "before": ["^"],
-        "after": ["}"]
+            "before": [
+                "^"
+            ],
+            "after": [
+                "}"
+            ]
         },
         {
-        "before": ["å"],
-        "after": ["{"]
+            "before": [
+                "å"
+            ],
+            "after": [
+                "{"
+            ]
         },
         {
-        "before": ["K"],
-        "commands": ["lineBreakInsert"],
-        "silent": true
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "lineBreakInsert"
+            ],
+            "silent": true
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-        "before": ["<leader>", "e"],
-        "after": ["$"]
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "after": [
+                "$"
+            ]
         },
         {
-        "before": ["^"],
-        "after": ["}"]
+            "before": [
+                "^"
+            ],
+            "after": [
+                "}"
+            ]
         },
         {
-        "before": ["å"],
-        "after": ["{"]
+            "before": [
+                "å"
+            ],
+            "after": [
+                "{"
+            ]
         }
     ],
     "vim.leader": "<space>",
