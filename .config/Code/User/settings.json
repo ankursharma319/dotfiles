@@ -14,7 +14,7 @@
     "cmake.buildDirectory": "${workspaceFolder}/_build",
     "cmake.configureOnOpen": true,
     "vim.enableNeovim": true,
-    "vim.neovimConfigPath": "/home/ankurs4/.config/nvim/init.vim",
+    "vim.neovimConfigPath": "/home/ankurs4/.config/nvim/init.lua",
     "vim.neovimUseConfigFile": true,
     "vim.easymotion": true,
     "vim.incsearch": true,
@@ -64,5 +64,5 @@
     "vim.handleKeys": {
         "<C-a>": false,
         "<C-f>": false
-    } 
+    }
 }

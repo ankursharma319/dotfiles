@@ -429,8 +429,17 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
+-- partially applied function
+local wrap = function(func, ...)
+  local args = {...}
+  return function()
+    func(unpack(args))
+  end
+end
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
+vim.keymap.set('n', '<leader>fa', wrap(builtin.find_files, {hidden = true }), { desc = '[F]ind [A]ll [F]iles including hidden .dot' })
 vim.keymap.set('n', '<leader>fF', builtin.git_files, { desc = '[F]ind [G]it [F]iles' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
 vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })

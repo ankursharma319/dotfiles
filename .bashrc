@@ -38,5 +38,5 @@ export PS1="\[$(tput setaf 34)\]\u\[$(tput setaf 34)\]@\[$(tput setaf 34)\]\h: \
 
 export CURRENT_EP=polaris-23.rd.cisco.com
 allt() { ssh root@$CURRENT_EP 'tail -f /var/log/eventlog/all.log | grep -i -e macro -e cuil -e ankur'; }
-allc() { ssh root@$CURRENT_EP 'cat /var/log/eventlog/all.log | grep -i -e macro -e cuil -e ankur'; }
-ep() { ssh root@$CURRENT_EP; }
+allc() { ssh root@$CURRENT_EP 'cat /var/log/eventlog/all.log | grep -i -e macro -e cuil -e ankur -e lyra -e wx2 -e config'; }
+ep () { ssh -t root@$CURRENT_EP "cd /var/log/eventlog; exec \$SHELL -l"; }
