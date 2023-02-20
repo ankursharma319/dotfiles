@@ -126,6 +126,16 @@
         {
             "before": [
                 "<leader>",
+                "f",
+                "g"
+            ],
+            "commands": [
+                "workbench.view.search"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
                 "<space>"
             ],
             "commands": [
@@ -164,9 +174,37 @@
                 "workbench.files.action.focusFilesExplorer",
                 "workbench.files.action.showActiveFileInExplorer"
             ]
+        },
+        {
+            "before": [
+                "<c-space>"
+            ],
+            "commands": [
+                "editor.action.smartSelect.expand"
+            ],
+            "silent": true
+        },
+        {
+            "before": [
+                "<c-backspace>"
+            ],
+            "commands": [
+                "editor.action.smartSelect.shrink"
+            ],
+            "silent": true
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        },
         {
             "before": [
                 "<leader>",
@@ -198,7 +236,8 @@
             ],
             "commands": [
                 "editor.action.moveLinesDownAction"
-            ]
+            ],
+            "silent": true
         },
         {
             "before": [
@@ -206,7 +245,26 @@
             ],
             "commands": [
                 "editor.action.moveLinesUpAction"
-            ]
+            ],
+            "silent": true
+        },
+        {
+            "before": [
+                "<c-space>"
+            ],
+            "commands": [
+                "editor.action.smartSelect.expand"
+            ],
+            "silent": true
+        },
+        {
+            "before": [
+                "<c-backspace>"
+            ],
+            "commands": [
+                "editor.action.smartSelect.shrink"
+            ],
+            "silent": true
         }
     ],
     "vim.leader": "<space>",

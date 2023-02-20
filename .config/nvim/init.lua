@@ -109,18 +109,25 @@ vim.g.mapleader = ' '
 
 -- go to end of line
 -- noremap <leader>e $
-vim.api.nvim_set_keymap(
-    "",
+vim.keymap.set(
+    {"n", "v"},
     "<leader>e",
     "$",
     { noremap = true }
 )
 
 -- go to normal mode from insert mode
--- inoremap jj <Esc>
-vim.api.nvim_set_keymap(
-    "i",
+vim.keymap.set(
+    {"i"},
     "jj",
+    "<Esc>",
+    { noremap = true }
+)
+
+-- go to normal mode from visual mode
+vim.keymap.set(
+    {"v"},
+    "<leader>jj",
     "<Esc>",
     { noremap = true }
 )
