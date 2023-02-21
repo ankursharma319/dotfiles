@@ -45,7 +45,6 @@ require('packer').startup(function(use)
     -- Git related plugins
     use 'tpope/vim-fugitive'
     use 'lewis6991/gitsigns.nvim'
-    use 'APZelos/blamer.nvim'
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
 
@@ -110,7 +109,7 @@ vim.g.mapleader = ' '
 -- go to end of line
 -- noremap <leader>e $
 vim.keymap.set(
-    {"n", "v"},
+    { "n", "v" },
     "<leader>e",
     "$",
     { noremap = true }
@@ -118,7 +117,7 @@ vim.keymap.set(
 
 -- go to normal mode from insert mode
 vim.keymap.set(
-    {"i"},
+    { "i" },
     "jj",
     "<Esc>",
     { noremap = true }
@@ -126,7 +125,7 @@ vim.keymap.set(
 
 -- go to normal mode from visual mode
 vim.keymap.set(
-    {"v"},
+    { "v" },
     "<leader>jj",
     "<Esc>",
     { noremap = true }
@@ -348,14 +347,43 @@ require('gitsigns').setup {
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
     },
-}
+    on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
 
--- Git blamer
-vim.g.blamer_enabled = false
--- use :BlamerToggle to enable temporarily, because slows things down
-vim.g.blamer_show_in_visual_modes = false
-vim.g.blamer_show_in_insert_modes = false
-vim.g.blamer_delay = 5000
+        local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+        end
+
+        -- Navigation
+        map('n', '<leader>gnh', function()
+            if vim.wo.diff then return ']c' end
+            vim.schedule(function() gs.next_hunk() end)
+            return '<Ignore>'
+        end, { expr = true })
+
+        map('n', '<leader>gph', function()
+            if vim.wo.diff then return '[c' end
+            vim.schedule(function() gs.prev_hunk() end)
+            return '<Ignore>'
+        end, { expr = true })
+
+        -- Actions
+        map({ 'n', 'v' }, '<leader>gsh', ':Gitsigns stage_hunk<CR>')
+        map({ 'n', 'v' }, '<leader>grh', ':Gitsigns reset_hunk<CR>')
+        map('n', '<leader>gsb', gs.stage_buffer)
+        map('n', '<leader>guh', gs.undo_stage_hunk)
+        map('n', '<leader>grb', gs.reset_buffer)
+        map('n', '<leader>gP', gs.preview_hunk)
+        map('n', '<leader>gbl', function() gs.blame_line { full = true } end)
+        map('n', '<leader>gtb', gs.toggle_current_line_blame)
+        map('n', '<leader>gd', gs.diffthis)
+        map('n', '<leader>gD', function() gs.diffthis('~') end)
+        map('n', '<leader>gtd', gs.toggle_deleted)
+
+    end
+}
 
 -- disable netrw at the very start of your init.lua (strongly advised by nvim-tree)
 vim.g.loaded_netrw = 1
@@ -417,7 +445,6 @@ require('telescope').setup {
             n = {
                 ["<C-h>"] = "which_key",
                 ["<leader>jj"] = require('telescope.actions').close,
-                ["<leader>fc"] = require('telescope.actions').close,
                 ['<C-d>'] = require('telescope.actions').delete_buffer
             }, -- n
             i = {
