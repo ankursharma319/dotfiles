@@ -6,7 +6,7 @@
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsFolder && !inputFocus"
     },
     {
-        "key": "space t",
+        "key": "space j",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "!inputFocus && !editorFocus"
     },
@@ -24,5 +24,20 @@
         "key": "space j",
         "command": "workbench.action.closeQuickOpen",
         "when": "inQuickOpen"
+    },
+    {
+        "key": "space j",
+        "command": "closeReferenceSearch",
+        "when": "inReferenceSearchEditor && !config.editor.stablePeek"
+    },
+    {
+        "key": "space j",
+        "command": "closeReferenceSearch",
+        "when": "referenceSearchVisible && !config.editor.stablePeek"
+    },
+    {
+        "key": "space j",
+        "command": "workbench.action.closePanel",
+        "when": "problemFocus || problemsFilterFocus"
     }
 ]

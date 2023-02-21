@@ -30,6 +30,15 @@
             "after": [
                 "<Esc>"
             ]
+        },
+        {
+            "before": [
+                "<c-h>"
+            ],
+            "commands": [
+                "editor.action.triggerParameterHints"
+            ],
+            "when": "editorHasSignatureHelpProvider && editorTextFocus"
         }
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
@@ -192,6 +201,137 @@
                 "editor.action.smartSelect.shrink"
             ],
             "silent": true
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "editor.action.showHover"
+            ],
+            "silent": true
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "l",
+                "d"
+            ],
+            "commands": [
+                "editor.action.revealDefinition"
+            ],
+            "silent": true,
+            "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "l",
+                "r"
+            ],
+            "commands": [
+                "editor.action.goToReferences"
+            ],
+            "silent": true,
+            "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "l",
+                "t",
+                "d"
+            ],
+            "commands": [
+                "editor.action.goToTypeDefinition"
+            ],
+            "silent": true,
+            "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "l",
+                "i"
+            ],
+            "commands": [
+                "editor.action.goToImplementation"
+            ],
+            "silent": true,
+            "when": "editorHasImplementationProvider && editorTextFocus && !isInEmbeddedEditor"
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "l",
+                "s"
+            ],
+            "commands": [
+                "workbench.action.gotoSymbol"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "l",
+                "w",
+                "s"
+            ],
+            "commands": [
+                "workbench.action.showAllSymbols"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "d"
+            ],
+            "commands": [
+                "workbench.action.problems.focus"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "v",
+                "c",
+                "a"
+            ],
+            "commands": [
+                "editor.action.quickFix"
+            ],
+            "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+        },
+        {
+            "before": [
+                "<leader>",
+                "l",
+                "c",
+                "a"
+            ],
+            "commands": [
+                "editor.action.quickFix"
+            ],
+            "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+        },
+        {
+            "before": [
+                "<leader>",
+                "l",
+                "r",
+                "n"
+            ],
+            "commands": [
+                "editor.action.rename"
+            ],
+            "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
