@@ -220,6 +220,9 @@ vim.o.incsearch = true
 -- try setting to unnamedplus if unnamed doesnt work
 vim.o.clipboard = 'unnamed'
 
+-- trailing space marked using underscore
+vim.opt.listchars = { trail = '_', precedes = '<', extends = '>' }
+
 -- Highlight cursor line underneath the cursor horizontally.
 -- vim.wo.cursorline = true
 
@@ -487,13 +490,7 @@ vim.keymap.set('n', '<leader>ft', builtin.treesitter, { desc = '[F]ind [T]reesit
 vim.keymap.set('n', '<leader>fb', builtin.builtin, { desc = '[F]ind [B]uiltins' })
 vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = '[F]ind [C]ommands' })
 
-vim.keymap.set('n', '<leader>/', function()
-    -- You can pass additional configuration to telescope to change theme, layout, etc.
-    builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        winblend = 10,
-        previewer = false,
-    })
-end, { desc = '[/] Fuzzily search in current buffer]' })
+vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer]' })
 
 -- treesitter
 
