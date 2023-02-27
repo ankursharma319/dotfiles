@@ -10,6 +10,8 @@ ln -s /home/ankurs4/src/dotfiles/.bashrc /home/ankurs4/.bashrc
 ln -s /home/ankurs4/src/dotfiles/.bash_profile /home/ankurs4/.bash_profile
 ln -s /home/ankurs4/src/dotfiles/.zshrc /home/ankurs4/.zshrc
 ln -s /home/ankurs4/src/dotfiles/.config/nix /home/ankurs4/.config/nix
+ln -s /home/ankurs4/src/dotfiles/.config/nixpkgs /home/ankurs4/.config/nixpkgs
+ln -s /home/ankurs4/src/dotfiles/.nix-channels /home/ankurs4/.nix-channels
 ```
 
 For VsCode: 

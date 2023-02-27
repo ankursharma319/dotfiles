@@ -12,6 +12,12 @@ then
 fi
 export PATH
 
+# for nix home manager
+NIX_HM_VARS_FILE="$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+if [ -f $FILE ]; then
+    . "$NIX_HM_VARS_FILE"
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
