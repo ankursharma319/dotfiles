@@ -193,6 +193,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- greatest remap ever - use this for pasting
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
+-- I never use q intentionally, only hit it by mistake
+vim.keymap.set("n", "q", "<nop>")
+
 ---=================================================================================
 ---general
 ---=================================================================================
@@ -608,11 +611,6 @@ lsp.on_attach(function(client, bufnr)
     end
 
     local opts = { buffer = bufnr, remap = false }
-
-    if client.name == "eslint" then
-        vim.cmd.LspStop('eslint')
-        return
-    end
 
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
