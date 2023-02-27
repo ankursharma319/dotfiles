@@ -9,6 +9,7 @@ ln -s /home/ankurs4/src/dotfiles/.tmux.conf /home/ankurs4/.tmux.conf
 ln -s /home/ankurs4/src/dotfiles/.bashrc /home/ankurs4/.bashrc
 ln -s /home/ankurs4/src/dotfiles/.bash_profile /home/ankurs4/.bash_profile
 ln -s /home/ankurs4/src/dotfiles/.zshrc /home/ankurs4/.zshrc
+ln -s /home/ankurs4/src/dotfiles/.config/nix /home/ankurs4/.config/nix
 ```
 
 For VsCode: 
