@@ -47,6 +47,7 @@ require('packer').startup(function(use)
     use 'lewis6991/gitsigns.nvim'
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+    use 'echasnovski/mini.trailspace'
 
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -390,6 +391,8 @@ require('gitsigns').setup {
 
     end
 }
+
+require('mini.trailspace').setup()
 
 -- disable netrw at the very start of your init.lua (strongly advised by nvim-tree)
 vim.g.loaded_netrw = 1

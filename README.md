@@ -14,7 +14,7 @@ ln -s /home/ankurs4/src/dotfiles/.config/nixpkgs /home/ankurs4/.config/nixpkgs
 ln -s /home/ankurs4/src/dotfiles/.nix-channels /home/ankurs4/.nix-channels
 ```
 
-For VsCode: 
+For VsCode:
 
 ```bash
 # on linux
