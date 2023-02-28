@@ -137,6 +137,30 @@
         {
             "before": [
                 "<leader>",
+                "c",
+                "f",
+                "p"
+            ],
+            "commands": [
+                "copyFilePath"
+            ],
+            "silent": false
+        },
+        {
+            "before": [
+                "<leader>",
+                "c",
+                "r",
+                "p"
+            ],
+            "commands": [
+                "copyRelativeFilePath"
+            ],
+            "silent": false
+        },
+        {
+            "before": [
+                "<leader>",
                 "f",
                 "c"
             ],

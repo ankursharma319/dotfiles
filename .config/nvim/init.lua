@@ -201,6 +201,11 @@ vim.keymap.set("n", "q", "<nop>")
 vim.keymap.set("n", "<leader>ww", ":set wrap<CR>")
 vim.keymap.set("n", "<leader>wnw", ":set nowrap<CR>")
 
+-- copy full path of currently opened buffer
+vim.keymap.set("n", "<leader>cfp", ":let @+ = expand(\"%:p\")<cr>")
+-- copy relative path of currently opened buffer
+vim.keymap.set("n", "<leader>crp", ":let @+ = expand(\"%\")<cr>")
+
 ---=================================================================================
 ---general
 ---=================================================================================
