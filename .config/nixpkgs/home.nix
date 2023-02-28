@@ -10,6 +10,16 @@
 
 let
     pkgs_unstable = import <nixpkgs_unstable> {};
+    common_pkgs = [
+        pkgs_unstable.htop
+    ];
+    linux_pkgs = [
+        pkgs_unstable.xclip
+    ];
+    mac_pkgs = [
+    ];
+    platform_specific_pkgs = if pkgs.stdenv.isLinux then linux_pkgs else mac_pkgs;
+    total_pkgs = common_pkgs ++ platform_specific_pkgs;
 in
 
 {
@@ -31,7 +41,5 @@ in
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
-    home.packages = [
-        pkgs_unstable.htop
-    ];
+    home.packages = total_pkgs;
 }
