@@ -114,6 +114,29 @@
         {
             "before": [
                 "<leader>",
+                "w",
+                "w"
+            ],
+            "commands": [
+                "editor.action.toggleWordWrap"
+            ],
+            "silent": false
+        },
+        {
+            "before": [
+                "<leader>",
+                "w",
+                "n",
+                "w"
+            ],
+            "commands": [
+                "editor.action.toggleWordWrap"
+            ],
+            "silent": false
+        },
+        {
+            "before": [
+                "<leader>",
                 "f",
                 "c"
             ],

@@ -197,6 +197,10 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- I never use q intentionally, only hit it by mistake
 vim.keymap.set("n", "q", "<nop>")
 
+-- set :wrap and set :nowrap
+vim.keymap.set("n", "<leader>ww", ":set wrap<CR>")
+vim.keymap.set("n", "<leader>wnw", ":set nowrap<CR>")
+
 ---=================================================================================
 ---general
 ---=================================================================================
