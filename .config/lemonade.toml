@@ -1,0 +1,12 @@
+
+# https://github.com/lemonade-command/lemonade
+
+# TCP port number, both for server and client
+port = 2489
+
+# Allowed ip ranges [Server only]
+allow = '127.0.0.1/32,::1/64'
+
+# Destination hostname [Client only]
+host = 'localhost'
+

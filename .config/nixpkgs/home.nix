@@ -17,6 +17,7 @@ let
         pkgs_unstable.xclip
     ];
     mac_pkgs = [
+        pkgs_unstable.lemonade
     ];
     platform_specific_pkgs = if pkgs.stdenv.isLinux then linux_pkgs else mac_pkgs;
     total_pkgs = common_pkgs ++ platform_specific_pkgs;
