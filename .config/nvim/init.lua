@@ -591,6 +591,7 @@ lsp.ensure_installed({
     'lemminx', --xml language server
     'rnix',
     'lua_ls',
+    'pyright',
 })
 
 -- configure lua ls for neovim
