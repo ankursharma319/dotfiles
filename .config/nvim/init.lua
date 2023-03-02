@@ -234,6 +234,7 @@ vim.o.incsearch = true
 vim.o.clipboard = 'unnamed'
 
 -- trailing space marked using underscore
+vim.o.list = true
 vim.opt.listchars = { trail = '_', precedes = '<', extends = '>' }
 
 -- Highlight cursor line underneath the cursor horizontally.
@@ -265,6 +266,9 @@ vim.opt.splitright = true
 
 -- Do not wrap lines. Allow long lines to extend as far as the line goes.
 vim.wo.wrap = false
+
+-- Do not wrap in middle of word when turn on wrapping turned on temporarily
+vim.o.linebreak = true
 
 -- Show partial command you type in the last line of the screen.
 vim.o.showcmd = true
