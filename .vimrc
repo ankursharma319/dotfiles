@@ -12,7 +12,7 @@ let mapleader = " "
 noremap <leader>e $
 
 " go to normal mode from insert mode
-inoremap jj <Esc> 
+inoremap jj <Esc>
 
 " insert line without going to insert mode
 nnoremap K O<Esc>
@@ -25,10 +25,18 @@ nnoremap K O<Esc>
 
 " for norwegian keyboards
 " map dead_diaeresis (^¨~) to asciicircum (^)
-" map dead_circumflex and dead_asciitilde to asciitilde (~) 
+" map dead_circumflex and dead_asciitilde to asciitilde (~)
 " https://askubuntu.com/questions/254424/how-can-i-change-what-keys-on-my-keyboard-do-how-can-i-create-custom-keyboard?noredirect=1&lq=1
 " xmodmap -e "keycode 35 = asciicircum"
 " xmodmap -e "keycode 35 shift = asciicircum asciitilde"
+
+" delete without yank
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+
+" normal delete with yank (cut)
+" use x in visual mode for cutting
 
 "=================================================================================
 "general
@@ -69,7 +77,11 @@ set smartcase
 set incsearch
 
 " use y and p with the system clipboard
-set clipboard=unnamedplus
+if system('uname -s') == "Darwin\n"
+  set clipboard=unnamed "OSX
+else
+  set clipboard=unnamedplus "Linux
+endif
 
 " Highlight cursor line underneath the cursor horizontally.
 set cursorline
@@ -92,8 +104,15 @@ set nobackup
 " Do not let cursor scroll below or above N number of lines when scrolling.
 set scrolloff=10
 
+" show tabs, trailing spaces and such visually
+set list
+set listchars=tab:!·,trail:·,precedes:<,extends:>
+
 " Do not wrap lines. Allow long lines to extend as far as the line goes.
 set nowrap
+
+" if do turn on wrapping, dont break midword
+set linebreak
 
 " Show partial command you type in the last line of the screen.
 set showcmd
