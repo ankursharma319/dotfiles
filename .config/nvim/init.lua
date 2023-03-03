@@ -95,6 +95,64 @@ end
 ---key combos
 ---==============================================================================
 
+--[[
+leader first char summary
+
+a
+b
+c - copy file path
+d - diagnostics
+e - go to end
+f - telescope
+g - gitsigns
+h
+i
+j - go to normal mode
+k
+l - lsp
+m
+n - search word under cursor
+o - new line
+p - pasting
+q
+r
+s
+t - treesitter
+u
+v
+w - wordwrap
+x
+y
+z - never gonna use this shortcut but good to have documented
+
+A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K - hover
+L
+M
+N - search word under cursor
+O - new line
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z
+]]
+
 -- unmap old mappings to space
 vim.api.nvim_set_keymap(
     "n",
@@ -206,6 +264,35 @@ vim.keymap.set("n", "<leader>cfp", ":let @+ = expand(\"%:p\")<cr>")
 -- copy relative path of currently opened buffer
 vim.keymap.set("n", "<leader>crp", ":let @+ = expand(\"%\")<cr>")
 
+-- delete without yanking
+vim.keymap.set(
+    { "n", "v" },
+    "d",
+    '"_d',
+    { noremap = true }
+)
+
+vim.keymap.set(
+    { "n" },
+    "D",
+    '"_D',
+    { noremap = true }
+)
+
+vim.keymap.set(
+    { "n" },
+    "<leader>n",
+    'g*',
+    { noremap = true }
+)
+
+vim.keymap.set(
+    { "n" },
+    "<leader>N",
+    'g#',
+    { noremap = true }
+)
+
 ---=================================================================================
 ---general
 ---=================================================================================
@@ -235,7 +322,7 @@ vim.o.clipboard = 'unnamed'
 
 -- trailing space marked using underscore
 vim.o.list = true
-vim.opt.listchars = { trail = '_', precedes = '<', extends = '>' }
+vim.opt.listchars = { tab = '!-', trail = '·', precedes = '<', extends = '>' }
 
 -- Highlight cursor line underneath the cursor horizontally.
 -- vim.wo.cursorline = true
@@ -629,34 +716,29 @@ lsp.on_attach(function(client, bufnr)
 
     local opts = { buffer = bufnr, remap = false }
 
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", '<leader>D', vim.lsp.buf.type_definition, opts)
     vim.keymap.set("n", 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
+    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>lrn", vim.lsp.buf.rename, opts)
+
+    vim.keymap.set("n", '<leader>zzltd', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set("n", "<leader>zzlws", vim.lsp.buf.workspace_symbol, opts)
+    vim.keymap.set("n", "<leader>zzlr", vim.lsp.buf.references, opts)
+    nmap('<leader>zzlwa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+    nmap('<leader>zzlwr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+    nmap('<leader>zzlwl', function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, '[W]orkspace [L]ist Folders')
+
     vim.keymap.set("n", "<leader>flr", require('telescope.builtin').lsp_references, opts)
     vim.keymap.set("n", "<leader>fld", require('telescope.builtin').lsp_definitions, opts)
     vim.keymap.set("n", "<leader>fli", require('telescope.builtin').lsp_implementations, opts)
     vim.keymap.set("n", "<leader>fltd", require('telescope.builtin').lsp_type_definitions, opts)
-    vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
     vim.keymap.set("n", "<leader>fls", require('telescope.builtin').lsp_document_symbols, opts)
     vim.keymap.set("n", "<leader>flws", require('telescope.builtin').lsp_workspace_symbols, opts)
-    vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist)
-    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-    vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>lrn", vim.lsp.buf.rename, opts)
-    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-
-    -- Lesser used LSP functionality
-    nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-    nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-    nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-    nmap('<leader>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, '[W]orkspace [L]ist Folders')
 
     -- Create a command `:Format` local to the LSP buffer
     vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -673,6 +755,14 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+
+-- diagnostics
+
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { noremap = true })
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist, { noremap = true })
+vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, { noremap = true })
+vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { noremap = true })
+vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { noremap = true })
 
 vim.diagnostic.config({
     virtual_text = true,
