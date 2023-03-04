@@ -40,7 +40,10 @@ export PS1="\[$(tput setaf 34)\]\u\[$(tput setaf 34)\]@\[$(tput setaf 34)\]\h: \
 
 # for nix-env utf-8 locale issues
 # also make sure to install nix-env -ia nixpkgs_unstable.glibcLocales
-# export LOCALE_ARCHIVE="$HOME/.nix-profile/lib/locale/locale-archive"
+NIX_GLIBC_LOCALE_ARCHIVE_FILE="$HOME/.nix-profile/lib/locale/locale-archive"
+if [ -f $NIX_GLIBC_LOCALE_ARCHIVE_FILE ]; then
+    export LOCALE_ARCHIVE=$NIX_GLIBC_LOCALE_ARCHIVE_FILE
+fi
 
 export CURRENT_EP=polaris-23.rd.cisco.com
 allt() { ssh root@$CURRENT_EP 'tail -f /var/log/eventlog/all.log | grep -i -e macro -e cuil -e ankur'; }
