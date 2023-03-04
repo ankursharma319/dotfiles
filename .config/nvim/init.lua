@@ -116,7 +116,7 @@ o - new line
 p - pasting
 q
 r
-s
+s - shortcut for / grep in current file
 t - treesitter
 u
 v
@@ -152,7 +152,6 @@ X
 Y
 Z
 ]]
-
 -- unmap old mappings to space
 vim.api.nvim_set_keymap(
     "n",
@@ -239,30 +238,27 @@ vim.api.nvim_set_keymap(
 )
 
 -- move selected blockes of code up and down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true })
 
 -- less disorienting when moving page up and down
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
 
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-
--- greatest remap ever - use this for pasting
-vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("n", "n", "nzzzv", { noremap = true })
+vim.keymap.set("n", "N", "Nzzzv", { noremap = true })
 
 -- I never use q intentionally, only hit it by mistake
-vim.keymap.set("n", "q", "<nop>")
+vim.keymap.set("n", "q", "<nop>", { noremap = true })
 
 -- set :wrap and set :nowrap
-vim.keymap.set("n", "<leader>ww", ":set wrap<CR>")
-vim.keymap.set("n", "<leader>wnw", ":set nowrap<CR>")
+vim.keymap.set("n", "<leader>ww", ":set wrap<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>wnw", ":set nowrap<CR>", { noremap = true })
 
 -- copy full path of currently opened buffer
-vim.keymap.set("n", "<leader>cfp", ":let @+ = expand(\"%:p\")<cr>")
+vim.keymap.set("n", "<leader>cfp", ":let @+ = expand(\"%:p\")<cr>", { noremap = true })
 -- copy relative path of currently opened buffer
-vim.keymap.set("n", "<leader>crp", ":let @+ = expand(\"%\")<cr>")
+vim.keymap.set("n", "<leader>crp", ":let @+ = expand(\"%\")<cr>", { noremap = true })
 
 -- delete without yanking
 vim.keymap.set(
@@ -290,6 +286,13 @@ vim.keymap.set(
     { "n" },
     "<leader>N",
     'g#',
+    { noremap = true }
+)
+
+vim.keymap.set(
+    { "n" },
+    "<leader>s",
+    '/',
     { noremap = true }
 )
 
@@ -488,7 +491,6 @@ require('gitsigns').setup {
         map('n', '<leader>gd', gs.diffthis)
         map('n', '<leader>gD', function() gs.diffthis('~') end)
         map('n', '<leader>gtd', gs.toggle_deleted)
-
     end
 }
 
