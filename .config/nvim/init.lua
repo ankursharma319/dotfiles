@@ -45,6 +45,7 @@ require('packer').startup(function(use)
     -- Git related plugins
     use 'tpope/vim-fugitive'
     use 'lewis6991/gitsigns.nvim'
+
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
     use 'echasnovski/mini.trailspace' -- highlight trailing space in red
@@ -153,12 +154,7 @@ Y
 Z
 ]]
 -- unmap old mappings to space
-vim.api.nvim_set_keymap(
-    "n",
-    "<SPACE>",
-    "<Nop>",
-    { noremap = true }
-)
+vim.api.nvim_set_keymap("n", "<SPACE>", "<Nop>", { noremap = true })
 
 -- default is left leaning slash
 -- use space as a the leader key
@@ -209,6 +205,9 @@ vim.api.nvim_set_keymap(
 -- nnoremap ~ ]
 -- nnoremap Å [
 
+vim.keymap.set("n", "ø", "}", { noremap = true })
+vim.keymap.set("n", "Ø", "{", { noremap = true })
+
 -- for norwegian keyboards
 -- map dead_diaeresis (^¨~) to asciicircum (^)
 -- map dead_circumflex and dead_asciitilde to asciitilde (~)
@@ -250,6 +249,8 @@ vim.keymap.set("n", "N", "Nzzzv", { noremap = true })
 
 -- I never use q intentionally, only hit it by mistake
 vim.keymap.set("n", "q", "<nop>", { noremap = true })
+vim.keymap.set("n", "s", "<Nop>", { noremap = true })
+vim.keymap.set("n", "S", "<Nop>", { noremap = true })
 
 -- set :wrap and set :nowrap
 vim.keymap.set("n", "<leader>ww", ":set wrap<CR>", { noremap = true })

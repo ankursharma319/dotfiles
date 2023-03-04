@@ -23,10 +23,8 @@ nnoremap <leader>O O<Esc>
 nnoremap <leader>o o<Esc>
 
 " paragraph movement
-" noremap ^ }
-" noremap å {
-" nnoremap ~ ]
-" nnoremap Å [
+noremap ø }
+noremap Ø {
 
 " move selected blockes of code up and down
 vnoremap J :m '>+1<CR>gv=gv
@@ -40,6 +38,8 @@ nnoremap N Nzzzv
 
 " I never use q intentionally, only hit it by mistake
 nnoremap q <nop>
+nnoremap s <Nop>
+nnoremap S <Nop>
 
 " change word wrap
 nnoremap <leader>ww :set wrap<cr>
