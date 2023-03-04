@@ -2,3 +2,6 @@
     name = Ankur Sharma
     username = ankurs4
     email = ankurs4@cisco.com
+[core]
+    editor = vim
+    excludesfile = ~/.global_gitignore
