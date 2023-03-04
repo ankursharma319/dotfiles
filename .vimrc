@@ -9,13 +9,18 @@ nnoremap <SPACE> <Nop>
 let mapleader = " "
 
 " go to end of line
-noremap <leader>e $
+nnoremap <leader>e $
+vnoremap <leader>e $
 
 " go to normal mode from insert mode
 inoremap jj <Esc>
 
+" go to normal mode from visual mode
+vnoremap <leader>jj <Esc>
+
 " insert line without going to insert mode
-nnoremap K O<Esc>
+nnoremap <leader>O O<Esc>
+nnoremap <leader>o o<Esc>
 
 " paragraph movement
 " noremap ^ }
@@ -23,12 +28,26 @@ nnoremap K O<Esc>
 " nnoremap ~ ]
 " nnoremap Å [
 
-" for norwegian keyboards
-" map dead_diaeresis (^¨~) to asciicircum (^)
-" map dead_circumflex and dead_asciitilde to asciitilde (~)
-" https://askubuntu.com/questions/254424/how-can-i-change-what-keys-on-my-keyboard-do-how-can-i-create-custom-keyboard?noredirect=1&lq=1
-" xmodmap -e "keycode 35 = asciicircum"
-" xmodmap -e "keycode 35 shift = asciicircum asciitilde"
+" move selected blockes of code up and down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '>-2<CR>gv=gv
+
+" less disorienting when moving page up and down
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" I never use q intentionally, only hit it by mistake
+nnoremap q <nop>
+
+" change word wrap
+nnoremap <leader>ww :set wrap<cr>
+nnoremap <leader>wnw :set nowrap<cr>
+
+" copy current filepath name
+nnoremap <leader>cfp :let @+ = expand("%:p")<cr>
+nnoremap <leader>crp :let @+ = expand("%")<cr>
 
 " delete without yank
 nnoremap d "_d
@@ -37,6 +56,13 @@ vnoremap d "_d
 
 " normal delete with yank (cut)
 " use x in visual mode for cutting
+
+" shortcut for grepping in current file
+nnoremap <leader>s /
+
+" shortcut for searching word under cursor
+nnoremap <leader>n g*
+nnoremap <leader>N g#
 
 "=================================================================================
 "general
