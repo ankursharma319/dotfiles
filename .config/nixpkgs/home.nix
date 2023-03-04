@@ -10,16 +10,33 @@
 
 let
     pkgs_unstable = import <nixpkgs_unstable> {};
+
     common_pkgs = [
         pkgs_unstable.htop
+        pkgs_unstable.wget
+        pkgs_unstable.curl
+        pkgs_unstable.unzip
+        pkgs_unstable.fd
+        pkgs_unstable.ripgrep
         pkgs_unstable.lemonade
+        pkgs_unstable.python311
+        pkgs_unstable.clang_15
+        pkgs_unstable.neovim
+        pkgs_unstable.cargo
+        pkgs_unstable.rustc
+        pkgs_unstable.nodejs
+        pkgs_unstable.nodePackages.npm
+        pkgs_unstable.tmux
     ];
 
     linux_pkgs = [
         pkgs_unstable.glibcLocales
+        pkgs_unstable.xclip
     ];
 
     mac_pkgs = [
+        pkgs_unstable.iterm2
+        pkgs_unstable.vscode
     ];
 
     platform_specific_pkgs = if pkgs.stdenv.isLinux then linux_pkgs else mac_pkgs;
