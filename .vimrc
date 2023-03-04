@@ -120,8 +120,12 @@ else
   set clipboard=unnamedplus "Linux
 endif
 
+" show tabs, trailing spaces and such visually
+set list
+set listchars=tab:!·,trail:·,precedes:<,extends:>
+
 " Highlight cursor line underneath the cursor horizontally.
-set cursorline
+" set cursorline
 
 " Highlight cursor line underneath the cursor vertically.
 " set cursorcolumn
@@ -133,7 +137,7 @@ set shiftwidth=4
 set tabstop=4
 
 " Use space characters instead of tabs.
-" set expandtab
+set expandtab
 
 " Do not save backup files.
 set nobackup
@@ -141,9 +145,9 @@ set nobackup
 " Do not let cursor scroll below or above N number of lines when scrolling.
 set scrolloff=10
 
-" show tabs, trailing spaces and such visually
-set list
-set listchars=tab:!·,trail:·,precedes:<,extends:>
+" new window should come below or to the right
+set splitright
+set splitbelow
 
 " Do not wrap lines. Allow long lines to extend as far as the line goes.
 set nowrap
@@ -172,12 +176,6 @@ set ruler
 " Blink cursor on error instead of beeping (grr)
 set visualbell
 
-" Encoding
-set encoding=utf-8
-
-" Rendering
-set ttyfast
-
 " enable mouse support (might not work well on Mac OS X)
 set mouse=a
 
@@ -195,6 +193,8 @@ set wildmode=list:longest
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noselect
 
 " configure Vim to use brighter colors
 set background=dark
@@ -202,3 +202,9 @@ set background=dark
 " https://stackoverflow.com/questions/6488683/how-to-change-the-cursor-between-normal-and-insert-modes-in-vim
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
+
+" Encoding
+set encoding=utf-8
+
+" Rendering
+set ttyfast
