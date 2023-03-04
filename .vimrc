@@ -83,6 +83,9 @@ filetype indent on
 " highlight syntax
 syntax on
 
+" Use new regular expression engine for syntax highlighting
+set re=0
+
 " show line numbers
 set number
 
