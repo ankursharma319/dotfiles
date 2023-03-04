@@ -64,6 +64,14 @@ nnoremap <leader>s /
 nnoremap <leader>n g*
 nnoremap <leader>N g#
 
+" autoinsert closing brace
+inoremap { {<CR>}<Esc>O
+inoremap ( ()<Esc>ha
+inoremap [ []<Esc>ha
+inoremap " ""<Esc>ha
+inoremap ' ''<Esc>ha
+inoremap < <><Esc>ha
+
 "=================================================================================
 "general
 "=================================================================================

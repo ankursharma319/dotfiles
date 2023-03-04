@@ -297,6 +297,14 @@ vim.keymap.set(
     { noremap = true }
 )
 
+-- auto insert closing bracket
+vim.keymap.set({ "i" }, "{", '{<CR>}<Esc>O', { noremap = true })
+vim.keymap.set({ "i" }, "(", '()<Esc>ha', { noremap = true })
+vim.keymap.set({ "i" }, "[", '[]<Esc>ha', { noremap = true })
+vim.keymap.set({ "i" }, '"', '""<Esc>ha', { noremap = true })
+vim.keymap.set({ "i" }, "'", "''<Esc>ha", { noremap = true })
+vim.keymap.set({ "i" }, "<", "<><Esc>ha", { noremap = true })
+
 ---=================================================================================
 ---general
 ---=================================================================================
