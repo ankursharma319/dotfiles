@@ -47,7 +47,7 @@ require('packer').startup(function(use)
     use 'lewis6991/gitsigns.nvim'
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-    use 'echasnovski/mini.trailspace'
+    use 'echasnovski/mini.trailspace' -- highlight trailing space in red
 
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -259,6 +259,7 @@ vim.keymap.set("n", "<leader>wnw", ":set nowrap<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>cfp", ":let @+ = expand(\"%:p\")<cr>", { noremap = true })
 -- copy relative path of currently opened buffer
 vim.keymap.set("n", "<leader>crp", ":let @+ = expand(\"%\")<cr>", { noremap = true })
+-- alternative use nvim-tree and when cursor is over file press y or Y
 
 -- delete without yanking
 vim.keymap.set(
@@ -500,7 +501,17 @@ require('mini.trailspace').setup()
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- empty setup using defaults
+-- common shortcuts when nvim-tree active:
+-- <CR> open
+-- y/Y yank name
+-- r rename
+-- d delete
+-- c copy
+-- p paste
+-- x cut
+-- a create
+-- q quit same as <leader>tt
+
 require("nvim-tree").setup({
     diagnostics = {
         enable = true,
