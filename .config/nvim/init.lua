@@ -128,14 +128,14 @@ z - never gonna use this shortcut but good to have documented
 A
 B
 C
-D
+D - delete buffer inside telescope (non leader)
 E
 F
 G
 H
 I
 J
-K - hover
+K - hover (non leader)
 L
 M
 N - search word under cursor
@@ -567,16 +567,26 @@ require('telescope').setup {
             n = {
                 ["<C-h>"] = "which_key",
                 ["<leader>jj"] = require('telescope.actions').close,
-                ['<C-d>'] = require('telescope.actions').delete_buffer
-            }, -- n
+                ["<C-u>"] = require('telescope.actions').preview_scrolling_up,
+                ["<C-d>"] = require('telescope.actions').preview_scrolling_down,
+                ["<leader>zztp"] = require("telescope.actions.layout").toggle_preview,
+            },
             i = {
                 ["<C-h>"] = "which_key",
                 ['<C-u>'] = false,
                 ['<C-d>'] = false,
-                -- ['<C-d>'] = require('telescope.actions').delete_buffer
-            } -- i
+            }
         },
     },
+    pickers = {
+        buffers = {
+            mappings = {
+                n = {
+                    ["D"] = require("telescope.actions").delete_buffer + require("telescope.actions").move_to_top,
+                }
+            }
+        }
+    }
 }
 
 -- Enable telescope fzf native, if installed
