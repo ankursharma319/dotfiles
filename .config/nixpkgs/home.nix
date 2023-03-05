@@ -16,11 +16,11 @@ let
         pkgs_unstable.wget
         pkgs_unstable.curl
         pkgs_unstable.unzip
+        pkgs_unstable.gnutar
         pkgs_unstable.fd
         pkgs_unstable.ripgrep
         pkgs_unstable.lemonade
         pkgs_unstable.python311
-        pkgs_unstable.clang_15
         pkgs_unstable.neovim
         pkgs_unstable.cargo
         pkgs_unstable.rustc
