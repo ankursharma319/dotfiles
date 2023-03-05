@@ -49,27 +49,22 @@ require('packer').startup(function(use)
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
     use 'echasnovski/mini.trailspace' -- highlight trailing space in red
 
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        requires = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
+    -- Autocompletion
+    -- main autocompletion engine, provides the hover window, not sources for completion
+    use { 'hrsh7th/nvim-cmp' }
+    -- snippet engine for loading snippets and expanding e.g. fn to full function template
+    use { 'L3MON4D3/LuaSnip' }
+    -- interface between LuaSnip & nvim-cmp, adds snippets to autocompletion menus
+    use { 'saadparwaiz1/cmp_luasnip' }
+    -- snippets database (from vscode)
+    use {'rafamadriz/friendly-snippets'}
+    -- buffer autocompletion source
+    use {'hrsh7th/cmp-buffer'}
+    -- file paths autocompletion source
+    use {'hrsh7th/cmp-path'}
+    -- commands autocompletion source
+    use {'hrsh7th/cmp-cmdline'}
 
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-
-            -- Snippets
-            { 'L3MON4D3/LuaSnip' },
-            { 'rafamadriz/friendly-snippets' },
-        }
-    }
     -- for status bar to show current code context
     use "SmiteshP/nvim-navic"
 
@@ -709,96 +704,6 @@ require 'nvim-treesitter.configs'.setup {
     },
 }
 
--- lsp
-
-local lsp = require("lsp-zero")
-
-lsp.preset("recommended")
-
-lsp.ensure_installed({
-    'clangd',
-    'cmake', -- for cmake the language
-    'tsserver',
-    'eslint',
-    'html',
-    'jsonls',
-    'lemminx', --xml language server
-    'rnix',
-    'lua_ls',
-    'pyright',
-})
-
--- configure lua ls for neovim
-lsp.nvim_workspace()
-
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ["<C-Space>"] = cmp.mapping.complete(),
-})
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
-
-lsp.set_preferences({
-    suggest_lsp_servers = false,
-})
-
-lsp.on_attach(function(client, bufnr)
-    local nmap = function(keys, func, desc)
-        if desc then
-            desc = 'LSP: ' .. desc
-        end
-
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-    end
-
-    local opts = { buffer = bufnr, remap = false }
-
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>lrn", vim.lsp.buf.rename, opts)
-
-    vim.keymap.set("n", '<leader>zzltd', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set("n", "<leader>zzlws", vim.lsp.buf.workspace_symbol, opts)
-    vim.keymap.set("n", "<leader>zzlr", vim.lsp.buf.references, opts)
-    nmap('<leader>zzlwa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-    nmap('<leader>zzlwr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-    nmap('<leader>zzlwl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, '[W]orkspace [L]ist Folders')
-
-    vim.keymap.set("n", "<leader>flr", require('telescope.builtin').lsp_references, opts)
-    vim.keymap.set("n", "<leader>fld", require('telescope.builtin').lsp_definitions, opts)
-    vim.keymap.set("n", "<leader>fli", require('telescope.builtin').lsp_implementations, opts)
-    vim.keymap.set("n", "<leader>fltd", require('telescope.builtin').lsp_type_definitions, opts)
-    vim.keymap.set("n", "<leader>fls", require('telescope.builtin').lsp_document_symbols, opts)
-    vim.keymap.set("n", "<leader>flws", require('telescope.builtin').lsp_workspace_symbols, opts)
-
-    -- Create a command `:Format` local to the LSP buffer
-    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-        if vim.lsp.buf.format then
-            vim.lsp.buf.format()
-        elseif vim.lsp.buf.formatting then
-            vim.lsp.buf.formatting()
-        end
-    end, { desc = 'Format current buffer with LSP' })
-
-    if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-    end
-end)
-
-lsp.setup()
-
 -- diagnostics
 
 vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { noremap = true })
@@ -810,3 +715,159 @@ vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { noremap = true })
 vim.diagnostic.config({
     virtual_text = true,
 })
+
+-- nvim-cmp setup
+local cmp = require 'cmp'
+local luasnip = require 'luasnip'
+
+-- copied from lsp-zero
+luasnip.config.set_config({
+  region_check_events = 'InsertEnter',
+  delete_check_events = 'InsertLeave'
+})
+luasnip.config.setup {}
+require('luasnip.loaders.from_vscode').lazy_load()
+
+-- just some local variables for convinience
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local select_opts = {behavior = cmp.SelectBehavior.Select}
+local merge = function(a, b)
+  return vim.tbl_deep_extend('force', {}, a, b)
+end
+
+cmp.setup({
+    snippet = {
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+            luasnip.lsp_expand(args.body) -- For `luasnip` users.
+        end,
+    },
+    preselect = cmp.PreselectMode.Item,
+    completion = {
+        completeopt = 'menu,menuone,noinsert'
+    },
+    -- window = {
+    --     completion = cmp.config.window.bordered(),
+    --     documentation = cmp.config.window.bordered(),
+    -- },
+    window = {
+      documentation = merge(
+        cmp.config.window.bordered(),
+        {
+          max_height = 15,
+          max_width = 60,
+        }
+      )
+    },
+    formatting = {
+        fields = {'abbr', 'menu', 'kind'},
+        format = function(entry, item)
+            local short_name = {
+                nvim_lsp = 'LSP',
+                nvim_lua = 'nvim'
+            }
+
+            local menu_name = short_name[entry.source.name] or entry.source.name
+
+            item.menu = string.format('[%s]', menu_name)
+            return item
+        end,
+    },
+    mapping = cmp.mapping.preset.insert({
+
+        -- navigate items on the list
+        ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
+        ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+        ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
+        ['<Down>'] = cmp.mapping.select_next_item(select_opts),
+
+        -- scroll up and down in the completion documentation
+        -- ['<C-f>'] = cmp.mapping.scroll_docs(5),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-5),
+        ['<C-d>'] = cmp.mapping.scroll_docs(5),
+
+        -- toggle completion
+        -- bring up the completion menu, kind of similar to as hover (K) and <C-h>
+        ['<C-Space>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.abort()
+            else
+                cmp.complete()
+            end
+        end),
+
+        -- Accept currently selected item.
+        -- Set `select` to `false` to only confirm explicitly selected items.
+        ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace, -- or Insert
+            select = false,
+        },
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+
+        -- -- go to next placeholder in the snippet
+        -- ['<C-f>'] = cmp.mapping(function(fallback)
+        --     if luasnip.jumpable(1) then
+        --         luasnip.jump(1)
+        --     else
+        --         fallback()
+        --     end
+        -- end, {'i', 's'}),
+        --
+        -- -- go to previous placeholder in the snippet
+        -- ['<C-b>'] = cmp.mapping(function(fallback)
+        --     if luasnip.jumpable(-1) then
+        --         luasnip.jump(-1)
+        --     else
+        --         fallback()
+        --     end
+        -- end, {'i', 's'}),
+    }),
+    sources = cmp.config.sources({
+        { name = 'luasnip', option = { show_autosnippets = false } }, -- For luasnip users.
+        { name = 'path' },
+        { name = 'buffer', option = { keyword_length = 3 }},
+    })
+})
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' }
+    }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources(
+        -- {{ name = 'path' }},
+        {{ name = 'cmdline' }}
+    )
+})
+
+-- use menu rather than floating window
+vim.opt.completeopt:append('menu')
+-- show menu even for one item
+vim.opt.completeopt:append('menuone')
+-- dont select the first item when window first opens
+vim.opt.completeopt:append('noselect')

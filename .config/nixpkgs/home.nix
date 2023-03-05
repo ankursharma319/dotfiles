@@ -27,6 +27,14 @@ let
         pkgs_unstable.nodejs
         pkgs_unstable.nodePackages.npm
         pkgs_unstable.tmux
+
+        # Language servers
+        pkgs_unstable.nodePackages.pyright
+        pkgs_unstable.clang-tools_15
+        # pkgs_unstable.cmake-language-server
+        # pkgs_unstable.nodePackages.typescript-language-server
+        # pkgs_unstable.nodePackages.eslint
+        # pkgs_unstable.nodePackages.vscode-langservers-extracted
     ];
 
     linux_pkgs = [
