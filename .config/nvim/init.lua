@@ -657,7 +657,6 @@ require 'nvim-treesitter.configs'.setup {
         "yaml",
         "html",
         "css",
-        "bash",
         "javascript",
         "typescript",
         "python",
