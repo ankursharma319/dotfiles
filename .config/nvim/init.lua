@@ -64,6 +64,11 @@ require('packer').startup(function(use)
     use {'hrsh7th/cmp-path'}
     -- commands autocompletion source
     use {'hrsh7th/cmp-cmdline'}
+    -- LSP source for nvim-cmp
+    use 'hrsh7th/cmp-nvim-lsp'
+
+    -- LSP
+    use { 'neovim/nvim-lspconfig' }
 
     -- for status bar to show current code context
     use "SmiteshP/nvim-navic"
@@ -842,6 +847,7 @@ cmp.setup({
         -- end, {'i', 's'}),
     }),
     sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
         { name = 'luasnip', option = { show_autosnippets = false } }, -- For luasnip users.
         { name = 'path' },
         { name = 'buffer', option = { keyword_length = 3 }},
@@ -871,3 +877,67 @@ vim.opt.completeopt:append('menu')
 vim.opt.completeopt:append('menuone')
 -- dont select the first item when window first opens
 vim.opt.completeopt:append('noselect')
+
+
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+vim.lsp.set_log_level("debug")
+
+local lspconfig = require('lspconfig')
+
+local my_on_attach = function(client, bufnr)
+    local nmap = function(keys, func, desc)
+        if desc then
+            desc = 'LSP: ' .. desc
+        end
+
+        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    end
+
+    local opts = { buffer = bufnr, remap = false }
+
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>lrn", vim.lsp.buf.rename, opts)
+
+    vim.keymap.set("n", '<leader>zzltd', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set("n", "<leader>zzlws", vim.lsp.buf.workspace_symbol, opts)
+    vim.keymap.set("n", "<leader>zzlr", vim.lsp.buf.references, opts)
+    nmap('<leader>zzlwa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+    nmap('<leader>zzlwr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+    nmap('<leader>zzlwl', function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, '[W]orkspace [L]ist Folders')
+
+    vim.keymap.set("n", "<leader>flr", require('telescope.builtin').lsp_references, opts)
+    vim.keymap.set("n", "<leader>fld", require('telescope.builtin').lsp_definitions, opts)
+    vim.keymap.set("n", "<leader>fli", require('telescope.builtin').lsp_implementations, opts)
+    vim.keymap.set("n", "<leader>fltd", require('telescope.builtin').lsp_type_definitions, opts)
+    vim.keymap.set("n", "<leader>fls", require('telescope.builtin').lsp_document_symbols, opts)
+    vim.keymap.set("n", "<leader>flws", require('telescope.builtin').lsp_workspace_symbols, opts)
+
+    -- Create a command `:Format` local to the LSP buffer
+    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+        if vim.lsp.buf.format then
+            vim.lsp.buf.format()
+        elseif vim.lsp.buf.formatting then
+            vim.lsp.buf.formatting()
+        end
+    end, { desc = 'Format current buffer with LSP' })
+
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
+end
+
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+lspconfig['clangd'].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}
