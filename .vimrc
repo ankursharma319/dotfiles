@@ -65,7 +65,7 @@ nnoremap <leader>n g*
 nnoremap <leader>N g#
 
 " autoinsert closing brace
-inoremap { {<CR>}<Esc>O
+inoremap { {}<Esc>ha
 inoremap ( ()<Esc>ha
 inoremap [ []<Esc>ha
 inoremap " ""<Esc>ha
@@ -194,7 +194,7 @@ set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noselect
+set completeopt=menu,menuone,noselect,noinsert
 
 " configure Vim to use brighter colors
 set background=dark

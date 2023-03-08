@@ -79,6 +79,8 @@ require('packer').startup(function(use)
 
     -- for status bar to show current code context
     use "SmiteshP/nvim-navic"
+    -- plugin for auto inserting closing bracket
+    use { "windwp/nvim-autopairs" }
 
     if is_bootstrap then
         require('packer').sync()
@@ -304,14 +306,6 @@ vim.keymap.set(
     { noremap = true }
 )
 
--- auto insert closing bracket
-vim.keymap.set({ "i" }, "{", '{<CR>}<Esc>O', { noremap = true })
-vim.keymap.set({ "i" }, "(", '()<Esc>ha', { noremap = true })
-vim.keymap.set({ "i" }, "[", '[]<Esc>ha', { noremap = true })
-vim.keymap.set({ "i" }, '"', '""<Esc>ha', { noremap = true })
-vim.keymap.set({ "i" }, "'", "''<Esc>ha", { noremap = true })
-vim.keymap.set({ "i" }, "<", "<><Esc>ha", { noremap = true })
-
 ---=================================================================================
 ---general
 ---=================================================================================
@@ -410,9 +404,6 @@ vim.o.wildmode = 'list:longest'
 -- There are certain files that we would never want to edit with Vim.
 -- Wildmenu will ignore files with these extensions.
 vim.o.wildignore = '*.o,*.obj,*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx'
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
 
 -- configure Vim to use brighter colors
 vim.o.background = 'dark'
@@ -768,7 +759,7 @@ cmp.setup({
     },
     preselect = cmp.PreselectMode.Item,
     completion = {
-        completeopt = 'menu,menuone,noinsert'
+        completeopt = 'menu,menuone,noinsert,noselect'
     },
     -- window = {
     --     completion = cmp.config.window.bordered(),
@@ -895,8 +886,20 @@ cmp.setup.cmdline(':', {
 vim.opt.completeopt:append('menu')
 -- show menu even for one item
 vim.opt.completeopt:append('menuone')
+-- dont change the inserted text as we move through the options
+vim.opt.completeopt:append('noinsert')
 -- dont select the first item when window first opens
 vim.opt.completeopt:append('noselect')
+
+-- auto insert closing bracket
+require("nvim-autopairs").setup {
+    ignored_next_char = "[%w%.]" -- will ignore alphanumeric and `.` symbol
+}
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 
 -- Setup neovim lua configuration
 require('neodev').setup()
