@@ -31,6 +31,7 @@ let
         # Language servers
         pkgs_unstable.nodePackages.pyright
         pkgs_unstable.clang-tools_15
+        pkgs_unstable.lua-language-server
         # pkgs_unstable.cmake-language-server
         # pkgs_unstable.nodePackages.typescript-language-server
         # pkgs_unstable.nodePackages.eslint

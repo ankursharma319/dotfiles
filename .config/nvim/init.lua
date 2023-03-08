@@ -58,17 +58,24 @@ require('packer').startup(function(use)
     use { 'saadparwaiz1/cmp_luasnip' }
     -- snippets database (from vscode)
     use {'rafamadriz/friendly-snippets'}
+
     -- buffer autocompletion source
     use {'hrsh7th/cmp-buffer'}
     -- file paths autocompletion source
     use {'hrsh7th/cmp-path'}
     -- commands autocompletion source
     use {'hrsh7th/cmp-cmdline'}
-    -- LSP source for nvim-cmp
+    -- LSP autocompletion source for nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp'
+    -- lua neovim api autocompletion sources
+    use { 'hrsh7th/cmp-nvim-lua' }
 
     -- LSP
     use { 'neovim/nvim-lspconfig' }
+    -- Additional lua configuration, makes nvim stuff amazing!
+    use 'folke/neodev.nvim'
+    -- Useful status updates for LSP
+    use { 'j-hui/fidget.nvim' }
 
     -- for status bar to show current code context
     use "SmiteshP/nvim-navic"
@@ -719,6 +726,18 @@ vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { noremap = true })
 
 vim.diagnostic.config({
     virtual_text = true,
+    signs = true,
+    update_in_insert = false,
+    underline = true,
+    severity_sort = true,
+    float = {
+        focusable = false,
+        style = 'minimal',
+        border = 'rounded',
+        source = 'always',
+        header = '',
+        prefix = '',
+    },
 })
 
 -- nvim-cmp setup
@@ -849,6 +868,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip', option = { show_autosnippets = false } }, -- For luasnip users.
+        { name = 'nvim_lua' },
         { name = 'path' },
         { name = 'buffer', option = { keyword_length = 3 }},
     })
@@ -878,6 +898,10 @@ vim.opt.completeopt:append('menuone')
 -- dont select the first item when window first opens
 vim.opt.completeopt:append('noselect')
 
+-- Setup neovim lua configuration
+require('neodev').setup()
+-- Setup standalone UI for nvim-lsp progress.
+require"fidget".setup{}
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -936,8 +960,19 @@ local my_on_attach = function(client, bufnr)
     end
 end
 
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 lspconfig['clangd'].setup {
     on_attach = my_on_attach,
     capabilities = capabilities,
 }
+
+lspconfig['lua_ls'].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+        },
+    },
+}
+
