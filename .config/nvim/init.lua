@@ -958,6 +958,13 @@ local my_on_attach = function(client, bufnr)
         end
     end, { desc = 'Format current buffer with LSP' })
 
+    if (client.name == "eslint") then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+        })
+    end
+
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
     end
@@ -979,3 +986,42 @@ lspconfig['lua_ls'].setup {
     },
 }
 
+lspconfig["cmake"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}
+
+lspconfig["rnix"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}
+
+lspconfig["tsserver"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}
+
+lspconfig["html"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}
+
+lspconfig["jsonls"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}
+
+lspconfig["eslint"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}
+
+lspconfig["cssls"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}
+
+lspconfig["pyright"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}

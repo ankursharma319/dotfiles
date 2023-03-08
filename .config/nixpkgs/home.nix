@@ -22,20 +22,18 @@ let
         pkgs_unstable.lemonade
         pkgs_unstable.python311
         pkgs_unstable.neovim
-        pkgs_unstable.cargo
-        pkgs_unstable.rustc
-        pkgs_unstable.nodejs
-        pkgs_unstable.nodePackages.npm
         pkgs_unstable.tmux
+        # pkgs_unstable.ncdu
 
         # Language servers
         pkgs_unstable.nodePackages.pyright
         pkgs_unstable.clang-tools_15
         pkgs_unstable.lua-language-server
-        # pkgs_unstable.cmake-language-server
-        # pkgs_unstable.nodePackages.typescript-language-server
-        # pkgs_unstable.nodePackages.eslint
-        # pkgs_unstable.nodePackages.vscode-langservers-extracted
+        pkgs_unstable.cmake-language-server
+        pkgs_unstable.nodePackages.typescript
+        pkgs_unstable.nodePackages.typescript-language-server
+        pkgs_unstable.nodePackages.vscode-langservers-extracted # contains html,css,json,eslint
+        pkgs_unstable.rnix-lsp
     ];
 
     linux_pkgs = [
