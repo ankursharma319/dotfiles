@@ -9,7 +9,7 @@
 { config, pkgs, ... }:
 
 let
-    pkgs_unstable = import <nixpkgs_unstable> {};
+    pkgs_unstable = pkgs;
 
     lemminx_drv = pkgs_unstable.callPackage ./lemminx.nix { pkgs = pkgs_unstable; };
 
