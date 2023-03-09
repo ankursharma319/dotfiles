@@ -1020,6 +1020,11 @@ lspconfig["cssls"].setup {
     capabilities = capabilities,
 }
 
+lspconfig["lemminx"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}
+
 lspconfig["pyright"].setup {
     on_attach = my_on_attach,
     capabilities = capabilities,

@@ -11,6 +11,8 @@
 let
     pkgs_unstable = import <nixpkgs_unstable> {};
 
+    lemminx_drv = pkgs_unstable.callPackage ./lemminx.nix { pkgs = pkgs_unstable; };
+
     common_pkgs = [
         pkgs_unstable.htop
         pkgs_unstable.wget
@@ -34,10 +36,13 @@ let
         pkgs_unstable.nodePackages.typescript-language-server
         pkgs_unstable.nodePackages.vscode-langservers-extracted # contains html,css,json,eslint
         pkgs_unstable.rnix-lsp
+        lemminx_drv
     ];
 
     linux_pkgs = [
         pkgs_unstable.glibcLocales
+        pkgs_unstable.nettools
+        pkgs_unstable.traceroute
         pkgs_unstable.xclip
     ];
 
