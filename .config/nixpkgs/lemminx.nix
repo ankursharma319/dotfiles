@@ -17,12 +17,12 @@ pkgs.stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = if pkgs.stdenv.isDarwin then [] else [
-      pkgs.autoPatchelfHook
+    pkgs.autoPatchelfHook
   ];
 
   buildInputs = [
-    pkgs.openssl
-    pkgs.zlib
+    pkgs.glibc
+    pkgs.gcc-unwrapped
   ];
 
   inherit file_name;
