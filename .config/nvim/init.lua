@@ -943,6 +943,7 @@ local my_on_attach = function(client, bufnr)
 
     vim.keymap.set("n", "<leader>flr", require('telescope.builtin').lsp_references, opts)
     vim.keymap.set("n", "<leader>fld", require('telescope.builtin').lsp_definitions, opts)
+    vim.keymap.set("n", "<leader>flD", vim.lsp.buf.declaration, opts)
     vim.keymap.set("n", "<leader>fli", require('telescope.builtin').lsp_implementations, opts)
     vim.keymap.set("n", "<leader>fltd", require('telescope.builtin').lsp_type_definitions, opts)
     vim.keymap.set("n", "<leader>fls", require('telescope.builtin').lsp_document_symbols, opts)
