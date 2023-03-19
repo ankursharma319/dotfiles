@@ -46,8 +46,8 @@ require('packer').startup(function(use)
     use 'lewis6991/gitsigns.nvim'
 
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-    use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-    use 'echasnovski/mini.trailspace' -- highlight trailing space in red
+    use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines
+    use 'echasnovski/mini.trailspace'         -- highlight trailing space in red
 
     -- Autocompletion
     -- main autocompletion engine, provides the hover window, not sources for completion
@@ -57,14 +57,14 @@ require('packer').startup(function(use)
     -- interface between LuaSnip & nvim-cmp, adds snippets to autocompletion menus
     use { 'saadparwaiz1/cmp_luasnip' }
     -- snippets database (from vscode)
-    use {'rafamadriz/friendly-snippets'}
+    use { 'rafamadriz/friendly-snippets' }
 
     -- buffer autocompletion source
-    use {'hrsh7th/cmp-buffer'}
+    use { 'hrsh7th/cmp-buffer' }
     -- file paths autocompletion source
-    use {'hrsh7th/cmp-path'}
+    use { 'hrsh7th/cmp-path' }
     -- commands autocompletion source
-    use {'hrsh7th/cmp-cmdline'}
+    use { 'hrsh7th/cmp-cmdline' }
     -- LSP autocompletion source for nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp'
     -- lua neovim api autocompletion sources
@@ -564,12 +564,12 @@ require("nvim-tree").setup({
 
 -- auto startup nvim-tree if opened a directory
 local function open_nvim_tree(data)
-  local directory = vim.fn.isdirectory(data.file) == 1
-  if not directory then
-    return
-  end
-  vim.cmd.cd(data.file)
-  require("nvim-tree.api").tree.open()
+    local directory = vim.fn.isdirectory(data.file) == 1
+    if not directory then
+        return
+    end
+    vim.cmd.cd(data.file)
+    require("nvim-tree.api").tree.open()
 end
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
@@ -583,16 +583,16 @@ require('telescope').setup {
     defaults = {
         mappings = {
             n = {
-                ["<C-h>"] = "which_key",
-                ["<leader>jj"] = require('telescope.actions').close,
-                ["<C-u>"] = require('telescope.actions').preview_scrolling_up,
-                ["<C-d>"] = require('telescope.actions').preview_scrolling_down,
-                ["<leader>zztp"] = require("telescope.actions.layout").toggle_preview,
+                    ["<C-h>"] = "which_key",
+                    ["<leader>jj"] = require('telescope.actions').close,
+                    ["<C-u>"] = require('telescope.actions').preview_scrolling_up,
+                    ["<C-d>"] = require('telescope.actions').preview_scrolling_down,
+                    ["<leader>zztp"] = require("telescope.actions.layout").toggle_preview,
             },
             i = {
-                ["<C-h>"] = "which_key",
-                ['<C-u>'] = false,
-                ['<C-d>'] = false,
+                    ["<C-h>"] = "which_key",
+                    ['<C-u>'] = false,
+                    ['<C-d>'] = false,
             }
         },
     },
@@ -600,7 +600,7 @@ require('telescope').setup {
         buffers = {
             mappings = {
                 n = {
-                    ["D"] = require("telescope.actions").delete_buffer,
+                        ["D"] = require("telescope.actions").delete_buffer,
                 }
             }
         }
@@ -677,7 +677,6 @@ require 'nvim-treesitter.configs'.setup {
     highlight = {
         -- `false` will disable the whole extension
         enable = true,
-
         -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
         ---@diagnostic disable-next-line: unused-local
         disable = function(lang, buf)
@@ -687,7 +686,6 @@ require 'nvim-treesitter.configs'.setup {
                 return true
             end
         end,
-
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
         -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
         -- Using this option may slow down your editor, and you may see some duplicate highlights.
@@ -736,17 +734,16 @@ local luasnip = require 'luasnip'
 
 -- copied from lsp-zero
 luasnip.config.set_config({
-  region_check_events = 'InsertEnter',
-  delete_check_events = 'InsertLeave'
+    region_check_events = 'InsertEnter',
+    delete_check_events = 'InsertLeave'
 })
 luasnip.config.setup {}
 require('luasnip.loaders.from_vscode').lazy_load()
 
 -- just some local variables for convinience
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local select_opts = {behavior = cmp.SelectBehavior.Select}
+local select_opts = { behavior = cmp.SelectBehavior.Select }
 local merge = function(a, b)
-  return vim.tbl_deep_extend('force', {}, a, b)
+    return vim.tbl_deep_extend('force', {}, a, b)
 end
 
 cmp.setup({
@@ -765,16 +762,16 @@ cmp.setup({
     --     documentation = cmp.config.window.bordered(),
     -- },
     window = {
-      documentation = merge(
-        cmp.config.window.bordered(),
-        {
-          max_height = 15,
-          max_width = 60,
-        }
-      )
+        documentation = merge(
+            cmp.config.window.bordered(),
+            {
+                max_height = 15,
+                max_width = 60,
+            }
+        )
     },
     formatting = {
-        fields = {'abbr', 'menu', 'kind'},
+        fields = { 'abbr', 'menu', 'kind' },
         format = function(entry, item)
             local short_name = {
                 nvim_lsp = 'LSP',
@@ -788,38 +785,34 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-
         -- navigate items on the list
-        ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
-        ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
-        ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
-        ['<Down>'] = cmp.mapping.select_next_item(select_opts),
-
+            ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
+            ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+            ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
+            ['<Down>'] = cmp.mapping.select_next_item(select_opts),
         -- scroll up and down in the completion documentation
         -- ['<C-f>'] = cmp.mapping.scroll_docs(5),
-        ['<C-u>'] = cmp.mapping.scroll_docs(-5),
-        ['<C-d>'] = cmp.mapping.scroll_docs(5),
-
+            ['<C-u>'] = cmp.mapping.scroll_docs(-5),
+            ['<C-d>'] = cmp.mapping.scroll_docs(5),
         -- toggle completion
         -- bring up the completion menu, kind of similar to as hover (K) and <C-h>
-        ['<C-Space>'] = cmp.mapping(function(fallback)
+        ---@diagnostic disable-next-line: unused-local
+            ['<C-Space>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.abort()
             else
                 cmp.complete()
             end
         end),
-
         -- Accept currently selected item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-        ['<CR>'] = cmp.mapping.confirm {
+            ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace, -- or Insert
             select = false,
         },
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-
-        ['<Tab>'] = nil,
-        ['<S-Tab>'] = nil,
+            ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+            ['<Tab>'] = nil,
+            ['<S-Tab>'] = nil,
         -- -- go to next placeholder in the snippet
         -- ['<C-f>'] = cmp.mapping(function(fallback)
         --     if luasnip.jumpable(1) then
@@ -843,7 +836,7 @@ cmp.setup({
         { name = 'luasnip', option = { show_autosnippets = false } }, -- For luasnip users.
         { name = 'nvim_lua' },
         { name = 'path' },
-        { name = 'buffer', option = { keyword_length = 3 }},
+        { name = 'buffer',  option = { keyword_length = 3 } },
     })
 })
 
@@ -859,8 +852,8 @@ cmp.setup.cmdline({ '/', '?' }, {
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources(
-        -- {{ name = 'path' }},
-        {{ name = 'cmdline' }}
+    -- {{ name = 'path' }},
+        { { name = 'cmdline' } }
     )
 })
 
@@ -879,14 +872,14 @@ require("nvim-autopairs").setup {
 }
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
+    'confirm_done',
+    cmp_autopairs.on_confirm_done()
 )
 
 -- Setup neovim lua configuration
 require('neodev').setup()
 -- Setup standalone UI for nvim-lsp progress.
-require"fidget".setup{}
+require "fidget".setup {}
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
