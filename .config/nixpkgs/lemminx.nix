@@ -20,7 +20,7 @@ pkgs.stdenv.mkDerivation rec {
     pkgs.autoPatchelfHook
   ];
 
-  buildInputs = [
+  buildInputs = if pkgs.stdenv.isDarwin then [] else [
     pkgs.glibc
     pkgs.gcc-unwrapped
   ];

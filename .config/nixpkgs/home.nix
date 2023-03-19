@@ -19,7 +19,10 @@ let
         pkgs_unstable.curl
         pkgs_unstable.unzip
         pkgs_unstable.gnutar
+        pkgs_unstable.git
+        pkgs_unstable.gnused
         pkgs_unstable.fd
+        pkgs_unstable.tree
         pkgs_unstable.ripgrep
         pkgs_unstable.lemonade
         pkgs_unstable.python311
