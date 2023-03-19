@@ -600,7 +600,7 @@ require('telescope').setup {
         buffers = {
             mappings = {
                 n = {
-                    ["D"] = require("telescope.actions").delete_buffer + require("telescope.actions").move_to_top,
+                    ["D"] = require("telescope.actions").delete_buffer,
                 }
             }
         }
