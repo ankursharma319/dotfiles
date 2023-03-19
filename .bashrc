@@ -33,8 +33,8 @@ fi
 HISTCONTROL=ignoreboth
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=2000
+HISTFILESIZE=4000
 
 # enable color support of ls and also add handy aliases
 alias grep='grep --color=auto'
