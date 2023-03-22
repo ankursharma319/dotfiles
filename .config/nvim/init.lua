@@ -2,6 +2,13 @@
 -- plugins stuff
 ----------------------------
 
+-- unmap old mappings to space
+vim.api.nvim_set_keymap("n", "<SPACE>", "<Nop>", { noremap = true })
+
+-- default is left leaning slash
+-- use space as a the leader key
+vim.g.mapleader = ' '
+
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
@@ -161,12 +168,6 @@ X
 Y
 Z
 ]]
--- unmap old mappings to space
-vim.api.nvim_set_keymap("n", "<SPACE>", "<Nop>", { noremap = true })
-
--- default is left leaning slash
--- use space as a the leader key
-vim.g.mapleader = ' '
 
 -- go to end of line
 -- noremap <leader>e $
