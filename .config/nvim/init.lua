@@ -10,6 +10,15 @@ vim.api.nvim_set_keymap("n", "<SPACE>", "<Nop>", { noremap = true })
 vim.g.mapleader = ' '
 vim.g.localmapleader = ' '
 
+-- configure Vim to use brighter colors
+vim.o.background = 'dark'
+
+--- theme stuff
+local true_color_supported = (vim.env.COLORTERM == "truecolor") or (vim.env.COLORTERM == "24bit")
+if true_color_supported then
+    vim.opt.termguicolors = true
+end
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -25,11 +34,57 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- Color schemes
-    { "Iron-E/nvim-highlite",  version = '^3.0.0', lazy = false, priority = 1000, },
-    { "bluz71/vim-moonfly-colors", branch = "cterm-compat", lazy = false, priority = 995, },
-    { "EdenEast/nightfox.nvim", lazy = false, priority = 990, },
-    { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 985, },
-    { "ellisonleao/gruvbox.nvim", lazy = false, priority = 980, },
+    {
+        "Iron-E/nvim-highlite",
+        version = '^3.0.0',
+        lazy = false,
+        priority = 1000,
+        cond = not true_color_supported,
+        config = function()
+            vim.cmd([[colorscheme highlite]])
+        end,
+    },
+    {
+        "bluz71/vim-moonfly-colors",
+        branch = "cterm-compat",
+        lazy = false,
+        priority = 995,
+        enabled = false,
+        cond = not true_color_supported,
+        config = function()
+            vim.cmd([[colorscheme moonfly]])
+        end,
+    },
+    {
+        "EdenEast/nightfox.nvim",
+        lazy = false,
+        priority = 990,
+        cond = true_color_supported,
+        config = function()
+            vim.cmd([[colorscheme nightfox]])
+        end,
+    },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        lazy = false,
+        priority = 985,
+        enabled = false,
+        cond = true_color_supported,
+        config = function()
+            vim.cmd([[colorscheme catppuccin]])
+        end,
+    },
+    {
+        "ellisonleao/gruvbox.nvim",
+        lazy = false,
+        priority = 980,
+        enabled = false,
+        cond = true_color_supported,
+        config = function()
+            vim.cmd([[colorscheme gruvbox]])
+        end,
+    },
 
     -- Appearance
     -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
@@ -39,7 +94,8 @@ require("lazy").setup({
 
     -- ui
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.1',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
@@ -51,7 +107,7 @@ require("lazy").setup({
             "nvim-tree/nvim-web-devicons",
         },
     },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter",    build = ":TSUpdate" },
 
     -- Git related plugins
     { "tpope/vim-fugitive" },
@@ -397,28 +453,9 @@ vim.o.wildmode = 'list:longest'
 -- Wildmenu will ignore files with these extensions.
 vim.o.wildignore = '*.o,*.obj,*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx'
 
--- configure Vim to use brighter colors
-vim.o.background = 'dark'
-
---- theme stuff
-local true_color_supported = (vim.env.COLORTERM == "truecolor") or (vim.env.COLORTERM == "24bit")
-if true_color_supported then
-    vim.opt.termguicolors = true
-end
-
 ----------------------------
 -- plugins stuff (part 2)
 ----------------------------
-
-if true_color_supported then
-    -- vim.cmd("colorscheme catppuccin")
-    -- vim.cmd("colorscheme gruvbox")
-    vim.cmd("colorscheme nightfox")
-else
-    vim.cmd("colorscheme highlite")
-    -- vim.cmd("colorscheme moonfly")
-end
-
 
 local navic = require("nvim-navic")
 navic.setup()
