@@ -8,104 +8,95 @@ vim.api.nvim_set_keymap("n", "<SPACE>", "<Nop>", { noremap = true })
 -- default is left leaning slash
 -- use space as a the leader key
 vim.g.mapleader = ' '
+vim.g.localmapleader = ' '
 
--- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-local is_bootstrap = false
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    is_bootstrap = true
-    vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
-    -- Only required if you have packer configured as `opt`
-    vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
+vim.opt.rtp:prepend(lazypath)
 
-require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+require("lazy").setup({
+    -- Color schemes
+    { "Iron-E/nvim-highlite",  version = '^3.0.0', lazy = false, priority = 1000, },
+    { "bluz71/vim-moonfly-colors", branch = "cterm-compat", lazy = false, priority = 995, },
+    { "EdenEast/nightfox.nvim", lazy = false, priority = 990, },
+    { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 985, },
+    { "ellisonleao/gruvbox.nvim", lazy = false, priority = 980, },
 
     -- Appearance
-    use 'nvim-tree/nvim-web-devicons'
-    use 'nvim-lualine/lualine.nvim'
-    use "EdenEast/nightfox.nvim"
-    use { "ellisonleao/gruvbox.nvim" }
-    use 'Iron-E/nvim-highlite'
-    use { 'bluz71/vim-moonfly-colors', branch = 'cterm-compat' }
-    use { "catppuccin/nvim", as = "catppuccin" }
+    -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
+    -- So for api plugins like devicons, we can always set lazy=true
+    { "nvim-tree/nvim-web-devicons", lazy = true },
+    { 'nvim-lualine/lualine.nvim' },
 
-    use { 'nvim-tree/nvim-tree.lua', tag = 'nightly' }
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
+    -- ui
+    {
+        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    },
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+    -- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 }
+    {
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+    },
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = function()
-            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-            ts_update()
-        end,
-    }
     -- Git related plugins
-    use 'tpope/vim-fugitive'
-    use 'lewis6991/gitsigns.nvim'
+    { "tpope/vim-fugitive" },
+    { "lewis6991/gitsigns.nvim" },
 
-    use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-    use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines
-    use 'echasnovski/mini.trailspace'         -- highlight trailing space in red
+    -- Add indentation guides even on blank lines
+    { "lukas-reineke/indent-blankline.nvim" },
+    -- "gc" to comment visual regions/lines
+    { "numToStr/Comment.nvim" },
+    -- highlight trailing space in red
+    { "echasnovski/mini.trailspace" },
 
     -- Autocompletion
     -- main autocompletion engine, provides the hover window, not sources for completion
-    use { 'hrsh7th/nvim-cmp' }
+    { "hrsh7th/nvim-cmp" },
     -- snippet engine for loading snippets and expanding e.g. fn to full function template
-    use { 'L3MON4D3/LuaSnip' }
+    { "L3MON4D3/LuaSnip" },
     -- interface between LuaSnip & nvim-cmp, adds snippets to autocompletion menus
-    use { 'saadparwaiz1/cmp_luasnip' }
+    { "saadparwaiz1/cmp_luasnip" },
     -- snippets database (from vscode)
-    use { 'rafamadriz/friendly-snippets' }
+    { "rafamadriz/friendly-snippets" },
 
     -- buffer autocompletion source
-    use { 'hrsh7th/cmp-buffer' }
+    { "hrsh7th/cmp-buffer" },
     -- file paths autocompletion source
-    use { 'hrsh7th/cmp-path' }
+    { "hrsh7th/cmp-path" },
     -- commands autocompletion source
-    use { 'hrsh7th/cmp-cmdline' }
+    { "hrsh7th/cmp-cmdline" },
     -- LSP autocompletion source for nvim-cmp
-    use 'hrsh7th/cmp-nvim-lsp'
+    { "hrsh7th/cmp-nvim-lsp" },
     -- lua neovim api autocompletion sources
-    use { 'hrsh7th/cmp-nvim-lua' }
+    { "hrsh7th/cmp-nvim-lua" },
 
     -- LSP
-    use { 'neovim/nvim-lspconfig' }
+    { "neovim/nvim-lspconfig" },
     -- Additional lua configuration, makes nvim stuff amazing!
-    use 'folke/neodev.nvim'
+    { "folke/neodev.nvim" },
     -- Useful status updates for LSP
-    use { 'j-hui/fidget.nvim' }
+    { "j-hui/fidget.nvim" },
 
     -- for status bar to show current code context
-    use "SmiteshP/nvim-navic"
+    { "SmiteshP/nvim-navic" },
     -- plugin for auto inserting closing bracket
-    use { "windwp/nvim-autopairs" }
-
-    if is_bootstrap then
-        require('packer').sync()
-    end
-end)
-
--- When we are bootstrapping a configuration, it doesn't
--- make sense to execute the rest of the init.lua.
---
--- You'll need to restart nvim, and then it will work.
-if is_bootstrap then
-    print '=================================='
-    print '    Plugins are being installed'
-    print '    Wait until Packer completes,'
-    print '       then restart nvim'
-    print '=================================='
-    return
-end
+    { "windwp/nvim-autopairs" },
+})
 
 ---=================================================================================
 ---key combos
