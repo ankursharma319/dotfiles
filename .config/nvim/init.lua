@@ -551,6 +551,31 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 local actions = require('telescope.actions')
 require('telescope').setup {
     defaults = {
+        layout_strategy = 'flex',
+        layout_config = {
+            horizontal = {
+                width = 0.8,
+                height = 0.9,
+                mirror = false,
+                prompt_position = "bottom",
+                -- number of cols below which to not show preview
+                preview_cutoff = 120,
+                preview_width = 0.5
+            },
+            vertical = {
+                width = 0.8,
+                height = 0.9,
+                mirror = false,
+                prompt_position = "bottom",
+                -- number of lines below which to not show preview
+                preview_cutoff = 20,
+                preview_height = 0.4
+            },
+            flex = {
+                -- number of columns required to switch to horizontal layout
+                flip_columns = 180,
+            }
+        },
         mappings = {
             n = {
                     ["<C-h>"] = "which_key",
