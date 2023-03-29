@@ -1030,13 +1030,6 @@ local my_on_attach = function(client, bufnr)
         end
     end, { desc = 'Format current buffer with LSP' })
 
-    if (client.name == "eslint") then
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-        })
-    end
-
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
     end
