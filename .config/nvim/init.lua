@@ -608,15 +608,18 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 
+local actions = require('telescope.actions')
 require('telescope').setup {
     defaults = {
         mappings = {
             n = {
                     ["<C-h>"] = "which_key",
-                    ["<leader>jj"] = require('telescope.actions').close,
-                    ["<C-u>"] = require('telescope.actions').preview_scrolling_up,
-                    ["<C-d>"] = require('telescope.actions').preview_scrolling_down,
-                    ["<leader>zztp"] = require("telescope.actions.layout").toggle_preview,
+                    ["<leader>jj"] = actions.close,
+                    ["<C-u>"] = actions.preview_scrolling_up,
+                    ["<C-d>"] = actions.preview_scrolling_down,
+                    ["<leader>tp"] = require("telescope.actions.layout").toggle_preview,
+                    ["<leader>q"] = actions.send_selected_to_qflist + actions.open_qflist,
+                    ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
             },
             i = {
                     ["<C-h>"] = "which_key",
