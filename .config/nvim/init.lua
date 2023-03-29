@@ -288,7 +288,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
     "n",
     "<leader>to",
-    ":NvimTreeFindFile<CR>",
+    ":NvimTreeFindFile<CR>:NvimTreeFocus<CR>",
     { noremap = true }
 )
 
