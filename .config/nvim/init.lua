@@ -3,7 +3,7 @@
 ----------------------------
 
 -- unmap old mappings to space
-vim.api.nvim_set_keymap("n", "<SPACE>", "<Nop>", { noremap = true })
+vim.keymap.set("n", "<SPACE>", "<Nop>", { noremap = true })
 
 -- default is left leaning slash
 -- use space as a the leader key
@@ -96,10 +96,14 @@ require("lazy").setup({
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.1',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        dependencies = { 'nvim-lua/plenary.nvim' },
     },
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
+    {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+        cond = vim.fn.executable 'make' == 1,
+    },
     {
         "nvim-tree/nvim-tree.lua",
         version = "*",
@@ -107,7 +111,10 @@ require("lazy").setup({
             "nvim-tree/nvim-web-devicons",
         },
     },
-    { "nvim-treesitter/nvim-treesitter",    build = ":TSUpdate" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+    },
 
     -- Git related plugins
     { "tpope/vim-fugitive" },
@@ -215,45 +222,20 @@ X
 Y
 Z
 ]]
+---==============================================================================
 
 -- go to end of line
--- noremap <leader>e $
-vim.keymap.set(
-    { "n", "v" },
-    "<leader>e",
-    "$",
-    { noremap = true }
-)
+vim.keymap.set({ "n", "v" }, "<leader>e", "$", { noremap = true })
 
 -- go to normal mode from insert mode
-vim.keymap.set(
-    { "i" },
-    "jj",
-    "<Esc>",
-    { noremap = true }
-)
+vim.keymap.set({ "i" }, "jj", "<Esc>", { noremap = true })
 
 -- go to normal mode from visual mode
-vim.keymap.set(
-    { "v" },
-    "<leader>jj",
-    "<Esc>",
-    { noremap = true }
-)
+vim.keymap.set({ "v" }, "<leader>jj", "<Esc>", { noremap = true })
 
 -- insert line without going to insert mode
-vim.api.nvim_set_keymap(
-    "n",
-    "<leader>O",
-    "O<Esc>",
-    { noremap = true }
-)
-vim.api.nvim_set_keymap(
-    "n",
-    "<leader>o",
-    "o<Esc>",
-    { noremap = true }
-)
+vim.keymap.set("n", "<leader>O", "O<Esc>", { noremap = true })
+vim.keymap.set("n", "<leader>o", "o<Esc>", { noremap = true })
 
 -- paragraph movement
 -- noremap ^ }
@@ -271,26 +253,9 @@ vim.keymap.set("n", "Ø", "{", { noremap = true })
 -- xmodmap -e "keycode 35 = asciicircum"
 -- xmodmap -e "keycode 35 shift = asciicircum asciitilde"
 
-vim.api.nvim_set_keymap(
-    "n",
-    "<leader>tt",
-    ":NvimTreeToggle<CR>",
-    { noremap = true }
-)
-
-vim.api.nvim_set_keymap(
-    "n",
-    "<leader>tf",
-    ":NvimTreeFocus<CR>",
-    { noremap = true }
-)
-
-vim.api.nvim_set_keymap(
-    "n",
-    "<leader>to",
-    ":NvimTreeFindFile<CR>:NvimTreeFocus<CR>",
-    { noremap = true }
-)
+vim.keymap.set("n", "<leader>tt", ":NvimTreeToggle<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>tf", ":NvimTreeFocus<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>to", ":NvimTreeFindFile<CR>:NvimTreeFocus<CR>", { noremap = true })
 
 -- move selected blockes of code up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true })
@@ -319,40 +284,14 @@ vim.keymap.set("n", "<leader>crp", ":let @+ = expand(\"%\")<cr>", { noremap = tr
 -- alternative use nvim-tree and when cursor is over file press y or Y
 
 -- delete without yanking
-vim.keymap.set(
-    { "n", "v" },
-    "d",
-    '"_d',
-    { noremap = true }
-)
+vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true })
+vim.keymap.set({ "n" }, "D", '"_D', { noremap = true })
 
-vim.keymap.set(
-    { "n" },
-    "D",
-    '"_D',
-    { noremap = true }
-)
+-- find next word under cursor
+vim.keymap.set({ "n" }, "<leader>n", 'g*', { noremap = true })
+vim.keymap.set({ "n" }, "<leader>N", 'g#', { noremap = true })
 
-vim.keymap.set(
-    { "n" },
-    "<leader>n",
-    'g*',
-    { noremap = true }
-)
-
-vim.keymap.set(
-    { "n" },
-    "<leader>N",
-    'g#',
-    { noremap = true }
-)
-
-vim.keymap.set(
-    { "n" },
-    "<leader>s",
-    '/',
-    { noremap = true }
-)
+vim.keymap.set({ "n" }, "<leader>s", '/', { noremap = true })
 
 ---=================================================================================
 ---general
