@@ -286,6 +286,7 @@ vim.keymap.set("n", "<leader>crp", ":let @+ = expand(\"%\")<cr>", { noremap = tr
 -- delete without yanking
 vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true })
 vim.keymap.set({ "n" }, "D", '"_D', { noremap = true })
+vim.keymap.set({ "n" }, "x", '"_x', { noremap = true })
 
 -- find next word under cursor
 vim.keymap.set({ "n" }, "<leader>n", 'g*', { noremap = true })

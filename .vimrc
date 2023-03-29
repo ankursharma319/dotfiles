@@ -53,6 +53,7 @@ nnoremap <leader>crp :let @+ = expand("%")<cr>
 nnoremap d "_d
 nnoremap D "_D
 vnoremap d "_d
+nnoremap x "_x
 
 " normal delete with yank (cut)
 " use x in visual mode for cutting
