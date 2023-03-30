@@ -44,6 +44,8 @@ nnoremap S <Nop>
 " change word wrap
 nnoremap <leader>ww :set wrap<cr>
 nnoremap <leader>wnw :set nowrap<cr>
+nnoremap <leader>w2 :set shiftwidth=2<CR>
+nnoremap <leader>w4 :set shiftwidth=4<CR>
 
 " copy current filepath name
 nnoremap <leader>cfp :let @+ = expand("%:p")<cr>

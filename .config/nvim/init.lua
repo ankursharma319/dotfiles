@@ -276,6 +276,8 @@ vim.keymap.set("n", "S", "<Nop>", { noremap = true })
 -- set :wrap and set :nowrap
 vim.keymap.set("n", "<leader>ww", ":set wrap<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>wnw", ":set nowrap<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>w2", ":set shiftwidth=2<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>w4", ":set shiftwidth=4<CR>", { noremap = true })
 
 -- copy full path of currently opened buffer
 vim.keymap.set("n", "<leader>cfp", ":let @+ = expand(\"%:p\")<cr>", { noremap = true })
