@@ -293,43 +293,21 @@ vim.keymap.set({ "n" }, "<leader>n", 'g*', { noremap = true })
 vim.keymap.set({ "n" }, "<leader>N", 'g#', { noremap = true })
 
 vim.keymap.set({ "n" }, "<leader>s", '/', { noremap = true })
-vim.keymap.set({"n", "v"}, '<leader>zzin', function()
-  print(vim.inspect{
-    vim.fn.visualmode(), -- last visual mode
-    vim.fn.getpos("'<'"), -- last start
-    vim.fn.getpos("'>'"), -- last end
-    vim.fn.line('v'), -- current visual line
-    vim.fn.col('v') -- current visual column
-}) end, {})
 
+-- allow deleting in quickfix list
 -- using range-aware function
 function QFdelete()
     local bufnr = vim.api.nvim_get_current_buf()
     -- get current qflist
     local qfl = vim.fn.getqflist()
-    -- no need for filter() and such; just drop the items in range
-    print("got qfl for buf " .. bufnr)
-    print("printing visual mode pos and current pos", vim.inspect{
-        vim.fn.visualmode(), -- last visual mode
-        vim.fn.getpos("'<'"), -- last start
-        vim.fn.getpos("'>'"), -- last end
-        vim.fn.line("."), -- current visual line
-        vim.fn.col(".") -- current visual column
-    })
     local linenumber = vim.fn.line(".");
-    -- print("qfl = ", vim.inspect(qfl))
     if vim.fn.visualmode() == "V" then
-        print("asked to delete range")
         local firstline = vim.fn.getpos("'<'")[2]
         local lastline = vim.fn.getpos("'>'")[2]
-        print("deleting from firstline ", firstline, " to lastline ", lastline)
         for i = firstline, lastline do
-            print("QFdelete removing line " .. i)
             table.remove(qfl, i)
         end
     else
-        print("not a range")
-        print("deleting linenumber ", linenumber)
         table.remove(qfl, linenumber)
     end
     -- replace items in the current list, do not make a new copy of it;
@@ -339,7 +317,7 @@ function QFdelete()
     vim.fn.setpos('.', { bufnr, linenumber, 1, 0 })
 end
 
-local qflist_autocmd_group_id = vim.api.nvim_create_augroup("QFList", {clear = true});
+local qflist_autocmd_group_id = vim.api.nvim_create_augroup("QFList", { clear = true });
 vim.api.nvim_create_autocmd(
     { "BufWinEnter" },
     {
@@ -348,39 +326,13 @@ vim.api.nvim_create_autocmd(
         pattern = "quickfix",
         callback = function(ev)
             if vim.api.nvim_buf_get_option(ev.buf, 'buftype') == 'quickfix' then
-                -- buffer is a terminal
-                print("buffer is quickfix list")
                 vim.keymap.set({ "n" }, "dd", QFdelete, { noremap = true, buffer = true, desc = "delete qflist entry" })
-                vim.keymap.set({ "v" }, "d", ":<c-u>lua =QFdelete()<cr>", { noremap = true, buffer= true, desc = "delete qflist range" })
-                -- nnoremap <silent><buffer>dd :call QFdelete(bufnr())<CR>
-                -- vnoremap <silent><buffer>d  :call QFdelete(bufnr())<CR>
+                vim.keymap.set({ "v" }, "d", ":<c-u>lua =QFdelete()<cr>",
+                    { noremap = true, buffer = true, desc = "delete qflist range" })
             end
-            print(string.format('event fired: s', vim.inspect(ev)))
         end
     }
 )
-
--- -- using range-aware function
--- function! QFdelete(bufnr) range
---     " get current qflist
---     let l:qfl = getqflist()
---     " no need for filter() and such; just drop the items in range
---     call remove(l:qfl, a:firstline - 1, a:lastline - 1)
---     " replace items in the current list, do not make a new copy of it;
---     " this also preserves the list title
---     call setqflist([], 'r', {'items': l:qfl})
---     " restore current line
---     call setpos('.', [a:bufnr, a:firstline, 1, 0])
--- endfunction
---
--- -- using buffer-local mappings
--- -- note: still have to check &bt value to filter out `:e quickfix` and such
--- augroup QFList | au!
---     autocmd BufWinEnter quickfix if &bt ==# 'quickfix'
---     autocmd BufWinEnter quickfix    nnoremap <silent><buffer>dd :call QFdelete(bufnr())<CR>
---     autocmd BufWinEnter quickfix    vnoremap <silent><buffer>d  :call QFdelete(bufnr())<CR>
---     autocmd BufWinEnter quickfix endif
--- augroup end
 
 ---=================================================================================
 ---general
