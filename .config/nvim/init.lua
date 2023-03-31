@@ -156,7 +156,10 @@ require("lazy").setup({
     { "j-hui/fidget.nvim" },
 
     -- for status bar to show current code context
-    { "SmiteshP/nvim-navic" },
+    {
+        "SmiteshP/nvim-navic",
+        dependencies = { "neovim/nvim-lspconfig" }
+    },
     -- plugin for auto inserting closing bracket
     { "windwp/nvim-autopairs" },
 })
@@ -449,9 +452,22 @@ require('lualine').setup({
         section_separators = { left = '', right = '' },
     },
     sections = {
+        lualine_a = { 'mode' },
+        lualine_b = {'branch', 'diff', 'diagnostics'},
         lualine_c = {
-            "filename", { navic.get_location, cond = navic.is_available },
-        }
+            "filename",
+            {
+                function()
+                    return navic.get_location()
+                end,
+                cond = function()
+                    return navic.is_available()
+                end
+            },
+        },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' },
     }
 })
 
