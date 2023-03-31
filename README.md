@@ -15,6 +15,7 @@ ln -s /home/ankurs4/src/dotfiles/.nix-channels /home/ankurs4/.nix-channels
 ln -s /home/ankurs4/src/dotfiles/.config/lemonade.toml /home/ankurs4/.config/lemonade.toml
 ln -s /home/ankurs4/src/dotfiles/.gitconfig /home/ankurs4/.gitconfig
 ln -s /home/ankurs4/src/dotfiles/.global_gitignore /home/ankurs4/.global_gitignore
+ln -s /home/ankurs4/src/dotfiles/.config/alacritty /home/ankurs4/.config/alacritty
 ```
 
 For VsCode:

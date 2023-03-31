@@ -29,7 +29,8 @@ let
         pkgs_unstable.python311
         pkgs_unstable.neovim
         pkgs_unstable.tmux
-        # pkgs_unstable.ncdu
+        pkgs_unstable.alacritty
+        pkgs_unstable.ncdu
 
         # Language servers
         pkgs_unstable.nodePackages.pyright
@@ -41,6 +42,18 @@ let
         pkgs_unstable.nodePackages.vscode-langservers-extracted # contains html,css,json,eslint
         pkgs_unstable.rnix-lsp
         lemminx_drv
+
+        # fonts
+        pkgs_unstable.fontconfig
+        (pkgs_unstable.nerdfonts.override {
+            fonts = [
+                "CascadiaCode"
+                "DroidSansMono"
+                "FiraCode"
+                "Hack"
+                "VictorMono"
+            ];
+        })
     ];
 
     linux_pkgs = [
@@ -77,6 +90,8 @@ in
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
+
+    fonts.fontconfig.enable = true;
 
     home.packages = total_pkgs;
 }
