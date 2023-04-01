@@ -46,12 +46,14 @@ require("lazy").setup({
     },
     {
         "bluz71/vim-moonfly-colors",
+        name = "moonfly",
         branch = "cterm-compat",
         lazy = false,
         priority = 995,
         enabled = false,
         cond = not true_color_supported,
         config = function()
+            require('moonfly').setup({})
             vim.cmd([[colorscheme moonfly]])
         end,
     },
@@ -59,8 +61,10 @@ require("lazy").setup({
         "EdenEast/nightfox.nvim",
         lazy = false,
         priority = 990,
+        enabled = true,
         cond = true_color_supported,
         config = function()
+            require('nightfox').setup({})
             vim.cmd([[colorscheme nightfox]])
         end,
     },
@@ -72,6 +76,7 @@ require("lazy").setup({
         enabled = false,
         cond = true_color_supported,
         config = function()
+            require('catppuccin').setup({})
             vim.cmd([[colorscheme catppuccin]])
         end,
     },
@@ -82,10 +87,33 @@ require("lazy").setup({
         enabled = false,
         cond = true_color_supported,
         config = function()
+            require('gruvbox').setup({
+                underline = false,
+                bold = false,
+                italic = {
+                    strings = false,
+                    comments = false,
+                    operators = false,
+                    folds = false,
+                },
+            })
             vim.cmd([[colorscheme gruvbox]])
         end,
     },
-
+    {
+        'rose-pine/neovim',
+        name = 'rose-pine',
+        lazy = false,
+        priority = 975,
+        enabled = false,
+        cond = true_color_supported,
+        config = function()
+            require('rose-pine').setup({
+                disable_italics = true,
+            })
+            vim.cmd([[colorscheme rose-pine]])
+        end,
+    },
     -- Appearance
     -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
     -- So for api plugins like devicons, we can always set lazy=true
