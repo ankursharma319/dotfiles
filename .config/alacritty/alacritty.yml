@@ -93,7 +93,12 @@ scrolling:
 draw_bold_text_with_bright_colors: false
 
 import:
- - ~/.config/alacritty/themes/default.yml#colors
+  # - ~/.config/alacritty/themes/default.yml
+  - ~/.config/alacritty/themes/tokyo_night.yml
+  # - ~/.config/alacritty/themes/ubuntu.yml
+  # - ~/.config/alacritty/themes/gruvbox_dark.yml
+  # - ~/.config/alacritty/themes/github_dark_default.yml
+  # - ~/.config/alacritty/themes/rose_pine.yml
 
 # Bell
 # The bell is rung every time the BEL control character is received.
