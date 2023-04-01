@@ -2,6 +2,9 @@
     name = Ankur Sharma
     username = ankurs4
     email = ankurs4@cisco.com
+    useConfigOnly = true
 [core]
     editor = vim
     excludesfile = ~/.global_gitignore
+[alias]
+  rank = "shortlog -s -n --no-merges"
