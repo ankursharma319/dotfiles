@@ -421,7 +421,18 @@ live_config_reload: true
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
+  # MINE
+  # kinda like reset
+  - { key: K, mods: Control, mode: ~Vi|~Search, chars: "printf \"\\033c\"\n" }
+  - { key: V, mods: Control|Shift, mode: ~Vi, action: Paste }
+  - { key: C, mods: Control|Shift, mode: ~Vi, action: Copy }
+  - { key: F, mods: Control|Shift, mode: ~Search, action: SearchForward }
+  - { key: B, mods: Control|Shift, mode: ~Search, action: SearchBackward }
+  - { key: V, mods: Control, mode: ~Search, action: ToggleViMode }
+
+  # DEFAULTS
+
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
