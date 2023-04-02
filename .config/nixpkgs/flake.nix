@@ -22,6 +22,7 @@
       # pkgs = nixpkgs.legacyPackages.aarch64-darwin;
       # below is same as legacyPackages above but with allowUnfree
       pkgs = import nixpkgs {
+          todo = builtins.abort "TODO change arch";
           system = "aarch64-darwin";
           config.allowUnfree = true;
       };

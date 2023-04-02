@@ -75,6 +75,7 @@ in
 {
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
+    todo = builtins.abort "TODO change username and homeDirectory";
     home.username = "ankurs4";
     home.homeDirectory = "/Users/ankurs4";
 
