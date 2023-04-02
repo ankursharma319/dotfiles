@@ -434,7 +434,10 @@ key_bindings:
   - { key: C, mods: Control|Shift, mode: ~Vi, action: Copy }
   - { key: F, mods: Control|Shift, mode: ~Search, action: SearchForward }
   - { key: B, mods: Control|Shift, mode: ~Search, action: SearchBackward }
-  - { key: V, mods: Control, mode: ~Search, action: ToggleViMode }
+  # commented out because interferes with ctrl+v vim block selection
+  # - { key: V, mods: Control, mode: ~Search, action: ToggleViMode }
+  - { key: Right, mods: Alt, chars: "\x1BF" }
+  - { key: Left,  mods: Alt, chars: "\x1BB" }
 
   # DEFAULTS
 
