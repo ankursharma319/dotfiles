@@ -320,6 +320,7 @@ vim.keymap.set("n", "<leader>crp", ":let @+ = expand(\"%\")<cr>", { noremap = tr
 vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true })
 vim.keymap.set({ "n" }, "D", '"_D', { noremap = true })
 vim.keymap.set({ "n" }, "x", '"_x', { noremap = true })
+vim.keymap.set({ "n" }, "c", '"_c', { noremap = true })
 
 -- find next word under cursor
 vim.keymap.set({ "n" }, "<leader>n", 'g*', { noremap = true })
