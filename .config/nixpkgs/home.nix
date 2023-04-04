@@ -6,7 +6,7 @@
 # home-manager switch
 # builds the new generation and switches to it
 
-{ config, pkgs, ... }:
+{ config, pkgs, install_gui_apps, my_user_name, my_home_dir, ... }:
 
 let
     pkgs_unstable = pkgs;
@@ -29,7 +29,6 @@ let
         pkgs_unstable.python311
         pkgs_unstable.neovim
         pkgs_unstable.tmux
-        pkgs_unstable.alacritty
         pkgs_unstable.ncdu
 
         # Language servers
@@ -42,7 +41,8 @@ let
         pkgs_unstable.nodePackages.vscode-langservers-extracted # contains html,css,json,eslint
         pkgs_unstable.rnix-lsp
         lemminx_drv
-
+    ] ++ (if !install_gui_apps then [] else [
+        pkgs_unstable.alacritty
         # fonts
         pkgs_unstable.fontconfig
         (pkgs_unstable.nerdfonts.override {
@@ -54,7 +54,7 @@ let
                 "VictorMono"
             ];
         })
-    ];
+    ]);
 
     linux_pkgs = [
         pkgs_unstable.glibcLocales
@@ -63,10 +63,10 @@ let
         pkgs_unstable.xclip
     ];
 
-    mac_pkgs = [
+    mac_pkgs = [] ++ (if !install_gui_apps then [] else [
         pkgs_unstable.iterm2
         pkgs_unstable.vscode
-    ];
+    ]);
 
     platform_specific_pkgs = if pkgs.stdenv.isLinux then linux_pkgs else mac_pkgs;
     total_pkgs = common_pkgs ++ platform_specific_pkgs;
@@ -75,9 +75,8 @@ in
 {
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
-    todo = builtins.abort "TODO change username and homeDirectory";
-    home.username = "ankurs4";
-    home.homeDirectory = "/Users/ankurs4";
+    home.username = my_user_name;
+    home.homeDirectory = my_home_dir;
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
@@ -92,7 +91,7 @@ in
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
-    fonts.fontconfig.enable = true;
+    fonts.fontconfig.enable = install_gui_apps;
 
     home.packages = total_pkgs;
 }

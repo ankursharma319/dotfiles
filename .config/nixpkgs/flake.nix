@@ -22,9 +22,15 @@
       # pkgs = nixpkgs.legacyPackages.aarch64-darwin;
       # below is same as legacyPackages above but with allowUnfree
       pkgs = import nixpkgs {
-          todo = builtins.abort "TODO change arch";
-          system = "aarch64-darwin";
+          system = builtins.abort "TODO change arch aarch64-darwin";
           config.allowUnfree = true;
+      };
+
+      # passed to home.nix
+      extraSpecialArgs = {
+        install_gui_apps = builtins.abort "TODO set this";
+        my_user_name = builtins.abort "TODO set this";
+        my_home_dir = builtins.abort "TODO set this";
       };
       modules = [
         ./home.nix
