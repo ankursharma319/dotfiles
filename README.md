@@ -11,6 +11,7 @@ ln -s /home/ankurs4/src/dotfiles/.bash_profile /home/ankurs4/.bash_profile
 ln -s /home/ankurs4/src/dotfiles/.zshrc /home/ankurs4/.zshrc
 ln -s /home/ankurs4/src/dotfiles/.config/nix /home/ankurs4/.config/nix
 ln -s /home/ankurs4/src/dotfiles/.config/nixpkgs /home/ankurs4/.config/nixpkgs
+ln -s /home/ankurs4/src/dotfiles/.config/home-manager /home/ankurs4/.config/home-manager
 ln -s /home/ankurs4/src/dotfiles/.nix-channels /home/ankurs4/.nix-channels
 ln -s /home/ankurs4/src/dotfiles/.config/lemonade.toml /home/ankurs4/.config/lemonade.toml
 ln -s /home/ankurs4/src/dotfiles/.gitconfig /home/ankurs4/.gitconfig

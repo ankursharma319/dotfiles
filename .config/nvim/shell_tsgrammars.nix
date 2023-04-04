@@ -8,6 +8,7 @@
 # run as:
 # nix-shell --command 'CC=gcc nvim' ~/.config/nvim/shell_tsgrammars.nix
 # and wait til treesitter stuff is installed.
+# On linux had more success with simple `nix-shell -p gcc`
 
 { pkgs ? import <nixpkgs_unstable> {} }:
 

@@ -1,6 +1,6 @@
 # Run as:
-# cd ~/.config/nixpkgs && nix run . switch -- --flake .
-
+# cd ~/.config/home-manager && nix run . switch -- --flake .
+# nix run ~/src/dotfiles/.config/home-manager#homeConfigurations.ankurs4.activationPackage
 {
   description = "Home Manager configuration of Ankur";
 
