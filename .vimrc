@@ -110,11 +110,7 @@ set smartcase
 set incsearch
 
 " use y and p with the system clipboard
-if system('uname -s') == "Darwin\n"
-  set clipboard=unnamed "OSX
-else
-  set clipboard=unnamedplus "Linux
-endif
+set clipboard^=unnamed,unnamedplus
 
 " show tabs, trailing spaces and such visually
 set list

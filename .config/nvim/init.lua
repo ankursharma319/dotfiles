@@ -392,8 +392,7 @@ vim.o.smartcase = true
 vim.o.incsearch = true
 
 -- use y and p with the system clipboard
--- try setting to unnamedplus if unnamed doesnt work
-vim.o.clipboard = 'unnamed'
+vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 
 -- trailing space marked using underscore
 vim.o.list = true
