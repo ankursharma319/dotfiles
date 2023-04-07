@@ -19,6 +19,7 @@ ln -s /home/ankurs4/src/dotfiles/.global_gitignore /home/ankurs4/.global_gitigno
 ln -s /home/ankurs4/src/dotfiles/.config/alacritty /home/ankurs4/.config/alacritty
 ln -s /home/ankurs4/src/dotfiles/.config/i3 /home/ankurs4/.config/i3
 ln -s /home/ankurs4/src/dotfiles/.config/i3status /home/ankurs4/.config/i3status
+ln -s /home/ankurs4/src/dotfiles/.config/rofi /home/ankurs4/.config/rofi
 ```
 
 For VsCode:

@@ -65,7 +65,7 @@ let
         pkgs_unstable.i3
         pkgs_unstable.i3lock
         pkgs_unstable.i3status
-        pkgs_unstable.dmenu
+        pkgs_unstable.rofi-unwrapped
     ]);
 
     mac_pkgs = [] ++ (if !install_gui_apps then [] else [
