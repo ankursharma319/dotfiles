@@ -17,6 +17,8 @@ ln -s /home/ankurs4/src/dotfiles/.config/lemonade.toml /home/ankurs4/.config/lem
 ln -s /home/ankurs4/src/dotfiles/.gitconfig /home/ankurs4/.gitconfig
 ln -s /home/ankurs4/src/dotfiles/.global_gitignore /home/ankurs4/.global_gitignore
 ln -s /home/ankurs4/src/dotfiles/.config/alacritty /home/ankurs4/.config/alacritty
+ln -s /home/ankurs4/src/dotfiles/.config/i3 /home/ankurs4/.config/i3
+ln -s /home/ankurs4/src/dotfiles/.config/i3status /home/ankurs4/.config/i3status
 ```
 
 For VsCode:

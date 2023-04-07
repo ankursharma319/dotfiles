@@ -61,7 +61,12 @@ let
         pkgs_unstable.nettools
         pkgs_unstable.traceroute
         pkgs_unstable.xclip
-    ];
+    ] ++ (if !install_gui_apps then [] else [
+        pkgs_unstable.i3
+        pkgs_unstable.i3lock
+        pkgs_unstable.i3status
+        pkgs_unstable.dmenu
+    ]);
 
     mac_pkgs = [] ++ (if !install_gui_apps then [] else [
         pkgs_unstable.iterm2
