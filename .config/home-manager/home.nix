@@ -30,6 +30,7 @@ let
         pkgs_unstable.neovim
         pkgs_unstable.tmux
         pkgs_unstable.ncdu
+        pkgs_unstable.vim
 
         # Language servers
         pkgs_unstable.nodePackages.pyright
