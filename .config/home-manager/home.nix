@@ -9,44 +9,44 @@
 { config, pkgs, install_gui_apps, my_user_name, my_home_dir, ... }:
 
 let
-    pkgs_unstable = pkgs;
-
-    lemminx_drv = pkgs_unstable.callPackage ./lemminx.nix { pkgs = pkgs_unstable; };
+    lemminx_drv = pkgs.callPackage ./lemminx.nix { pkgs = pkgs; };
+    firefox_mac_drv = pkgs.callPackage ./firefox.nix {};
 
     common_pkgs = [
-        pkgs_unstable.htop
-        pkgs_unstable.wget
-        pkgs_unstable.curl
-        pkgs_unstable.unzip
-        pkgs_unstable.gnutar
-        pkgs_unstable.git
-        pkgs_unstable.gnused
-        pkgs_unstable.fd
-        pkgs_unstable.file
-        pkgs_unstable.tree
-        pkgs_unstable.ripgrep
-        pkgs_unstable.lemonade
-        pkgs_unstable.python311
-        pkgs_unstable.neovim
-        pkgs_unstable.tmux
-        pkgs_unstable.ncdu
-        pkgs_unstable.vim
+        pkgs.htop
+        pkgs.wget
+        pkgs.curl
+        pkgs.unzip
+        pkgs.gnutar
+        pkgs.git
+        pkgs.gnused
+        pkgs.fd
+        pkgs.file
+        pkgs.tree
+        pkgs.ripgrep
+        pkgs.lemonade
+        pkgs.python311
+        pkgs.neovim
+        pkgs.tmux
+        pkgs.ncdu
+        pkgs.vim
+        pkgs.nodePackages.livedown
 
         # Language servers
-        pkgs_unstable.nodePackages.pyright
-        pkgs_unstable.clang-tools_15
-        pkgs_unstable.lua-language-server
-        pkgs_unstable.cmake-language-server
-        pkgs_unstable.nodePackages.typescript
-        pkgs_unstable.nodePackages.typescript-language-server
-        pkgs_unstable.nodePackages.vscode-langservers-extracted # contains html,css,json,eslint
-        pkgs_unstable.rnix-lsp
+        pkgs.nodePackages.pyright
+        pkgs.clang-tools_15
+        pkgs.lua-language-server
+        pkgs.cmake-language-server
+        pkgs.nodePackages.typescript
+        pkgs.nodePackages.typescript-language-server
+        pkgs.nodePackages.vscode-langservers-extracted # contains html,css,json,eslint
+        pkgs.rnix-lsp
         lemminx_drv
     ] ++ (if !install_gui_apps then [] else [
-        pkgs_unstable.alacritty
+        pkgs.alacritty
         # fonts
-        pkgs_unstable.fontconfig
-        (pkgs_unstable.nerdfonts.override {
+        pkgs.fontconfig
+        (pkgs.nerdfonts.override {
             fonts = [
                 "CascadiaCode"
                 "DroidSansMono"
@@ -58,21 +58,23 @@ let
     ]);
 
     linux_pkgs = [
-        pkgs_unstable.glibcLocales
-        pkgs_unstable.nettools
-        pkgs_unstable.traceroute
-        pkgs_unstable.xclip
+        pkgs.glibcLocales
+        pkgs.nettools
+        pkgs.traceroute
+        pkgs.xclip
     ] ++ (if !install_gui_apps then [] else [
-        pkgs_unstable.i3
-        pkgs_unstable.i3lock
-        pkgs_unstable.i3status
-        pkgs_unstable.rofi-unwrapped
-        pkgs_unstable.keychain
+        pkgs.i3
+        pkgs.i3lock
+        pkgs.i3status
+        pkgs.rofi-unwrapped
+        pkgs.keychain
+        pkgs.firefox
     ]);
 
     mac_pkgs = [] ++ (if !install_gui_apps then [] else [
-        pkgs_unstable.iterm2
-        pkgs_unstable.vscode
+        pkgs.iterm2
+        pkgs.vscode
+        firefox_mac_drv
     ]);
 
     platform_specific_pkgs = if pkgs.stdenv.isLinux then linux_pkgs else mac_pkgs;
