@@ -22,7 +22,7 @@ const {
     unmap,
     unmapAllExcept,
     vmapkey,
-    vunmap
+    vunmap,
 } = api;
 
 // -----------------------------------------------------------------------------------------------------------------------
@@ -188,9 +188,6 @@ unmap(';pc');
 unmap(';pd');
 unmap(';ps');
 
-// Emoji
-iunmap(":");
-
 // click on an image or a button (similar to f)
 unmap('q')
 
@@ -335,13 +332,13 @@ unmap('sw');
 unmap('sy');
 
 // go forward in history
-unmap('D')
+unmap('D');
 
 // scroll half page down
-unmap('d')
+unmap('d');
 
 // go forward in tab history (just switch tabs)
-unmap('F')
+unmap('F');
 
 // open a link
 unmap('f')
@@ -404,7 +401,7 @@ unmap('gxp');
 unmap('gxx');
 
 // Open opened URL in current tab in omnibar
-unmap('H')
+unmap('H');
 
 // scroll left, down, up, right
 unmap('h')
@@ -458,7 +455,7 @@ unmap(';pj');
 unmap(';pm');
 
 // paste html on current page
-unmap(';pm');
+unmap(';pp');
 
 // show last action
 unmap(';ql');
@@ -481,17 +478,14 @@ unmap(';w');
 // yank histories
 unmap(';yh');
 
-// jump to vim like mark
-unmap("'");
-
 // move current tab to left or right
 unmap('<<');
 unmap('>>');
 
 // save session and quit
-unmap('ZZ')
+unmap('ZZ');
 // restore last session
-unmap('ZR')
+unmap('ZR');
 
 // zoom in, out, reset
 unmap('zi');
@@ -499,7 +493,7 @@ unmap('zo');
 unmap('zr');
 
 // enter visual mode and select whole element
-unmap('zv')
+unmap('zv');
 
 // restore last closed tab
 unmap('X');
@@ -520,7 +514,7 @@ unmap('cc');
 unmap('cf');
 
 // query word (definition) with hints
-unmap('cf');
+unmap('cq');
 
 // change scroll target (toggle through scroll targets)
 unmap('cs');
@@ -529,7 +523,7 @@ unmap('cs');
 unmap('b');
 
 // go back in tab history (just switch tabs)
-unmap('B')
+unmap('B');
 
 // restore visual mode
 unmap('V');
@@ -538,8 +532,211 @@ unmap('V');
 unmap('v');
 
 // add current url to vim like marks
-unmap('mm');
+unmap('m');
 
+// previous found text
+unmap('N');
+
+// next found text
+unmap('n');
+
+// go to last used tab
+unmap('<Ctrl-6>');
+
+// find in current page
+unmap('/');
+
+// scroll all the way to the left or right
+unmap('0');
+unmap('$');
+
+// scroll to percentage of current page
+unmap('%');
+
+// repeat last action
+unmap('.');
+
+// show help
+unmap('?');
+
+// show commands
+unmap(':');
+
+// jump to vim like mark
+unmap("'");
+unmap("<Ctrl-'>");
+
+// Find selected text in current page
+unmap('*');
+
+// toggle surfingkeys on current site
+unmap('<Alt-s>');
+
+// enter PassThrough mode to temporarily suppress SurfingKeys
+unmap('<Alt-i>');
+
+//Mouse over elements.
+unmap('<Ctrl-h>');
+//Mouse out elements
+unmap('<Ctrl-j>');
+
+
+// go to edit box with vim editor
+unmap('<Ctrl-i>');
+// go to edit box with neovim editor
+unmap('<Ctrl-Alt-i>');
+
+// pin/unpin current tab
+unmap('<Alt-p>');
+// mute/unmute current tab
+unmap('<Alt-m>');
+
+// --- Omnibar specific --
+// <Ctrl-d>Delete focused item from bookmark or history
+unmap('<Ctrl-d>');
+// <Ctrl-i>Edit selected URL with vim editor, then open
+unmap('<Ctrl-i>');
+// <Ctrl-j>Toggle Omnibar's position
+unmap('<Ctrl-j>');
+// <Ctrl-.>Show results of next page
+unmap('<Ctrl-.>');
+// <Ctrl-,>Show results of previous page
+unmap('<Ctrl-,>');
+// <Ctrl-c>Copy selected item url or all listed item urls
+unmap('<Ctrl-c>');
+// <Ctrl-D>Delete all listed items from bookmark or history
+unmap('<Ctrl-D>');
+// <Ctrl-r>Re-sort history by visitCount or lastVisitTime
+unmap('<Ctrl-r>');
+// close omnibar
+unmap('<Esc>');
+// <Ctrl-m>Create vim-like mark for selected item
+unmap('<Ctrl-m>');
+// <Tab>Forward cycle through the candidates.
+unmap('<Tab>');
+// <Shift-Tab>Backward cycle through the candidates.
+unmap('<Shift-Tab>');
+// <Ctrl-'>Toggle quotes in an input element
+unmap("<Ctrl-'>");
+// <ArrowDown>Forward cycle through the candidates.
+unmap('<ArrowDown>');
+// <ArrowUp>Backward cycle through the candidates.
+unmap('<ArrowUp>');
+// <Ctrl-n>Forward cycle through the candidates.
+unmap('<Ctrl-n>');
+// <Ctrl-p>Backward cycle through the candidates.
+unmap('<Ctrl-p>');
+
+// --- Insert mode --
+
+// Emoji
+iunmap(":");
+
+// <Ctrl-e>Move the cursor to the end of the line
+iunmap('<Ctrl-e>');
+// <Ctrl-f>Move the cursor to the beginning of the line
+iunmap('<Ctrl-f>');
+// <Ctrl-u>Delete all entered characters before the cursor
+iunmap('<Ctrl-u>');
+// <Alt-b>Move the cursor Backward 1 word
+iunmap('<Alt-b>');
+// <Alt-f>Move the cursor Forward 1 word
+iunmap('<Alt-f>');
+// <Alt-w>Delete a word backwards
+iunmap('<Alt-w>');
+// <Alt-d>Delete a word forwards
+iunmap('<Alt-d>');
+// <Esc>Exit insert mode
+iunmap('<Esc>');
+// <Ctrl-'>Toggle quotes in an input element
+iunmap("<Ctrl-'>");
+// <Ctrl-i>Open vim editor for current input
+iunmap('<Ctrl-i>');
+// <Ctrl-Alt-i>Open neovim for current input
+iunmap('<Ctrl-Alt-i>');
+
+// --- Visual mode --
+
+// Find selected text in current page
+vunmap('*');
+// Toggle visual mode
+vunmap('v');
+// Find in current page
+vunmap('/');
+
+// Select a word(w) or line(l) or sentence(s) or paragraph(p)
+vunmap('V');
+
+// previous found text
+vunmap('N');
+// next found text
+vunmap('n');
+
+// 0backward lineboundary
+vunmap('0');
+
+// lforward character
+vunmap('l');
+// hbackward character
+vunmap('h');
+// jforward line
+vunmap('j');
+// kbackward line
+vunmap('k');
+// wforward word
+vunmap('w');
+// eforward word
+vunmap('e');
+// bbackward word
+vunmap('b');
+// (backward sentence
+vunmap('(');
+// )forward sentence
+vunmap(')');
+// {backward paragraphboundary
+vunmap('{');
+// }forward paragraphboundary
+vunmap('}');
+// $forward lineboundary
+vunmap('$');
+// Gforward documentboundary
+vunmap('G');
+// ggbackward documentboundary
+vunmap('gg');
+// grRead selected text
+vunmap('gr');
+// oGo to Other end of highlighted text
+vunmap('o');
+// *Search word under the cursor
+vunmap('*');
+// <Enter>Click on node under cursor.
+vunmap('<Enter>');
+// <Shift-Enter>Click on node under cursor.
+vunmap('<Shift-Enter>');
+// ztmake cursor at start of window.
+vunmap('zt');
+// zzmake cursor at center of window.
+vunmap('zz');
+// zbmake cursor at bottom of window.
+vunmap('zb');
+// fForward to next char.
+vunmap('f');
+// FBackward to next char.
+vunmap('F');
+// ;Repeat latest f, F
+vunmap(';');
+// ,Repeat latest f, F in opposite direction
+vunmap(',');
+// pExpand selection to parent element
+vunmap('p');
+// <Ctrl-u>Backward 20 lines
+vunmap('<Ctrl-u>');
+// <Ctrl-d>Forward 20 lines
+vunmap('<Ctrl-d>');
+// tTranslate selected text with google
+vunmap('t');
+// qTranslate word under cursor
+vunmap('q');
 
 // ---- Map -----
 
