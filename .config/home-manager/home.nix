@@ -30,6 +30,7 @@ let
         pkgs.tmux
         pkgs.ncdu
         pkgs.vim
+        pkgs.jq
         pkgs.nodePackages.livedown
 
         # Language servers
