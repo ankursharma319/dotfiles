@@ -119,7 +119,7 @@ settings.historyMUOrder = false;
 // Whether to put cursor at end of input when entering
 // an input box, by false to put the cursor where it
 // was when focus was removed from the input.
-settings.cursorAtEndOfInput = false;
+settings.cursorAtEndOfInput = true;
 
 // Whether digits are reserved for repeats, by false to
 // enable mapping of numeric keys.
