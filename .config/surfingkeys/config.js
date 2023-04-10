@@ -21,6 +21,7 @@ const {
     tabOpenLink,
     unmap,
     unmapAllExcept,
+    vmap,
     vmapkey,
     vunmap,
 } = api;
@@ -198,7 +199,7 @@ unmap('Q')
 unmap('W');
 
 // switch frames (maybe useful for iframes)
-unmap('w');
+// unmap('w');
 
 // scroll halfway up
 unmap('e');
@@ -213,7 +214,7 @@ unmap('R');
 unmap('r');
 
 // choose a tab
-unmap('T');
+// unmap('T');
 
 // open a url (omnibar)
 unmap('t');
@@ -230,7 +231,7 @@ unmap('yT');
 unmap('yY');
 
 // copy a url link on the page
-unmap('ya');
+// unmap('ya');
 // copy a column of table
 unmap('yc');
 // copy current downloading url
@@ -256,9 +257,9 @@ unmap('ys');
 // duplicate current tab
 unmap('yt');
 // copy text of an element
-unmap('yv');
+// unmap('yv');
 // copy current page's url
-unmap('yy');
+// unmap('yy');
 
 // copy mutiple of link urls, columns & elements
 unmap('yma');
@@ -272,10 +273,10 @@ unmap('U')
 unmap('u')
 
 // go to edit box with vim editor
-unmap('I')
+// unmap('I')
 
 // go to edit box
-unmap('i')
+// unmap('i')
 
 // Open detected links from text
 unmap('O');
@@ -341,12 +342,12 @@ unmap('d');
 unmap('F');
 
 // open a link
-unmap('f')
+// unmap('f');
 
 // scroll to bottom of page
-unmap('G')
+// unmap('G');
 // scroll to top of page
-unmap('gg')
+// unmap('gg');
 
 // reload current page without hash fragment
 unmap('g#');
@@ -404,10 +405,10 @@ unmap('gxx');
 unmap('H');
 
 // scroll left, down, up, right
-unmap('h')
-unmap('j')
-unmap('k')
-unmap('l')
+// unmap('h');
+// unmap('j');
+// unmap('k');
+// unmap('l');
 
 // edit current url with vim editor and reload
 unmap(';U');
@@ -493,7 +494,7 @@ unmap('zo');
 unmap('zr');
 
 // enter visual mode and select whole element
-unmap('zv');
+// unmap('zv');
 
 // restore last closed tab
 unmap('X');
@@ -505,7 +506,7 @@ unmap('x');
 unmap('C');
 
 // reset scroll targtet
-unmap('cS');
+// unmap('cS');
 
 // open selected text (or from clipboard) as url in new tab
 unmap('cc');
@@ -517,7 +518,7 @@ unmap('cf');
 unmap('cq');
 
 // change scroll target (toggle through scroll targets)
-unmap('cs');
+// unmap('cs');
 
 // open a bookmark
 unmap('b');
@@ -529,48 +530,48 @@ unmap('B');
 unmap('V');
 
 // toggle visual mode
-unmap('v');
+// unmap('v');
 
 // add current url to vim like marks
 unmap('m');
 
 // previous found text
-unmap('N');
+// unmap('N');
 
 // next found text
-unmap('n');
+// unmap('n');
 
 // go to last used tab
 unmap('<Ctrl-6>');
 
 // find in current page
-unmap('/');
+// unmap('/');
 
 // scroll all the way to the left or right
-unmap('0');
-unmap('$');
+// unmap('0');
+// unmap('$');
 
 // scroll to percentage of current page
 unmap('%');
 
 // repeat last action
-unmap('.');
+// unmap('.');
 
 // show help
-unmap('?');
+// unmap('?');
 
 // show commands
-unmap(':');
+// unmap(':');
 
 // jump to vim like mark
 unmap("'");
 unmap("<Ctrl-'>");
 
 // Find selected text in current page
-unmap('*');
+// unmap('*');
 
 // toggle surfingkeys on current site
-unmap('<Alt-s>');
+// unmap('<Alt-s>');
 
 // enter PassThrough mode to temporarily suppress SurfingKeys
 unmap('<Alt-i>');
@@ -592,40 +593,41 @@ unmap('<Alt-p>');
 unmap('<Alt-m>');
 
 // --- Omnibar specific --
+// -- Unmapping these has no effect currently
 // <Ctrl-d>Delete focused item from bookmark or history
-unmap('<Ctrl-d>');
+// unmap('<Ctrl-d>');
 // <Ctrl-i>Edit selected URL with vim editor, then open
-unmap('<Ctrl-i>');
+// unmap('<Ctrl-i>');
 // <Ctrl-j>Toggle Omnibar's position
-unmap('<Ctrl-j>');
+// unmap('<Ctrl-j>');
 // <Ctrl-.>Show results of next page
-unmap('<Ctrl-.>');
+// unmap('<Ctrl-.>');
 // <Ctrl-,>Show results of previous page
-unmap('<Ctrl-,>');
+// unmap('<Ctrl-,>');
 // <Ctrl-c>Copy selected item url or all listed item urls
-unmap('<Ctrl-c>');
+// unmap('<Ctrl-c>');
 // <Ctrl-D>Delete all listed items from bookmark or history
-unmap('<Ctrl-D>');
+// unmap('<Ctrl-D>');
 // <Ctrl-r>Re-sort history by visitCount or lastVisitTime
-unmap('<Ctrl-r>');
+// unmap('<Ctrl-r>');
 // close omnibar
-unmap('<Esc>');
+// unmap('<Esc>');
 // <Ctrl-m>Create vim-like mark for selected item
-unmap('<Ctrl-m>');
+// unmap('<Ctrl-m>');
 // <Tab>Forward cycle through the candidates.
-unmap('<Tab>');
+// unmap('<Tab>');
 // <Shift-Tab>Backward cycle through the candidates.
-unmap('<Shift-Tab>');
+// unmap('<Shift-Tab>');
 // <Ctrl-'>Toggle quotes in an input element
-unmap("<Ctrl-'>");
+// unmap("<Ctrl-'>");
 // <ArrowDown>Forward cycle through the candidates.
-unmap('<ArrowDown>');
+// unmap('<ArrowDown>');
 // <ArrowUp>Backward cycle through the candidates.
-unmap('<ArrowUp>');
+// unmap('<ArrowUp>');
 // <Ctrl-n>Forward cycle through the candidates.
-unmap('<Ctrl-n>');
+// unmap('<Ctrl-n>');
 // <Ctrl-p>Backward cycle through the candidates.
-unmap('<Ctrl-p>');
+// unmap('<Ctrl-p>');
 
 // --- Insert mode --
 
@@ -647,7 +649,7 @@ iunmap('<Alt-w>');
 // <Alt-d>Delete a word forwards
 iunmap('<Alt-d>');
 // <Esc>Exit insert mode
-iunmap('<Esc>');
+// iunmap('<Esc>');
 // <Ctrl-'>Toggle quotes in an input element
 iunmap("<Ctrl-'>");
 // <Ctrl-i>Open vim editor for current input
@@ -658,71 +660,71 @@ iunmap('<Ctrl-Alt-i>');
 // --- Visual mode --
 
 // Find selected text in current page
-vunmap('*');
+// vunmap('*');
 // Toggle visual mode
-vunmap('v');
+// vunmap('v');
 // Find in current page
-vunmap('/');
+// vunmap('/');
 
 // Select a word(w) or line(l) or sentence(s) or paragraph(p)
-vunmap('V');
+// vunmap('V');
 
 // previous found text
-vunmap('N');
+// vunmap('N');
 // next found text
-vunmap('n');
+// vunmap('n');
 
 // 0backward lineboundary
-vunmap('0');
+// vunmap('0');
 
 // lforward character
-vunmap('l');
+// vunmap('l');
 // hbackward character
-vunmap('h');
+// vunmap('h');
 // jforward line
-vunmap('j');
+// vunmap('j');
 // kbackward line
-vunmap('k');
+// vunmap('k');
 // wforward word
-vunmap('w');
+// vunmap('w');
 // eforward word
 vunmap('e');
 // bbackward word
-vunmap('b');
+// vunmap('b');
 // (backward sentence
-vunmap('(');
+// vunmap('(');
 // )forward sentence
-vunmap(')');
+// vunmap(')');
 // {backward paragraphboundary
-vunmap('{');
+// vunmap('{');
 // }forward paragraphboundary
-vunmap('}');
+// vunmap('}');
 // $forward lineboundary
-vunmap('$');
+// vunmap('$');
 // Gforward documentboundary
-vunmap('G');
+// vunmap('G');
 // ggbackward documentboundary
-vunmap('gg');
+// vunmap('gg');
 // grRead selected text
 vunmap('gr');
 // oGo to Other end of highlighted text
-vunmap('o');
+// vunmap('o');
 // *Search word under the cursor
-vunmap('*');
+// vunmap('*');
 // <Enter>Click on node under cursor.
-vunmap('<Enter>');
+// vunmap('<Enter>');
 // <Shift-Enter>Click on node under cursor.
 vunmap('<Shift-Enter>');
 // ztmake cursor at start of window.
-vunmap('zt');
+// vunmap('zt');
 // zzmake cursor at center of window.
-vunmap('zz');
+// vunmap('zz');
 // zbmake cursor at bottom of window.
-vunmap('zb');
+// vunmap('zb');
 // fForward to next char.
-vunmap('f');
+// vunmap('f');
 // FBackward to next char.
-vunmap('F');
+// vunmap('F');
 // ;Repeat latest f, F
 vunmap(';');
 // ,Repeat latest f, F in opposite direction
@@ -730,80 +732,93 @@ vunmap(',');
 // pExpand selection to parent element
 vunmap('p');
 // <Ctrl-u>Backward 20 lines
-vunmap('<Ctrl-u>');
+// vunmap('<Ctrl-u>');
 // <Ctrl-d>Forward 20 lines
-vunmap('<Ctrl-d>');
+// vunmap('<Ctrl-d>');
 // tTranslate selected text with google
 vunmap('t');
 // qTranslate word under cursor
 vunmap('q');
 
-// ---- Map -----
-
-// // Open Multiple Links
-// map('<Alt-f>', 'cf');
-//
-// // Yank Link URL
-// map('<Alt-y>', 'ya');
-// map('<Alt-u>', 'ya');
-//
-// // Open Hint in new tab
-// map('F', 'C');
-//
-// // --- Nav ---
-// // Open Clipboard URL in current tab
-// mapkey('p', "Open the clipboard's URL in the current tab", () => { Clipboard.read(function(response) { window.location.href = response.data; }); });
-//
-// // Open Clipboard URL in new tab
-// map('P', 'cc');
-//
-// // Current tab Omnibar
-// map('o', 'go');
-//
-// // History Back/Forward
-// map('H', 'S');
-// map('L', 'D');
-//
-// // Scroll Page Down/Up
-// mapkey("<Ctrl-d>", "Scroll down", () => { Normal.scroll("pageDown"); });
-// mapkey("<Ctrl-u>", "Scroll down", () => { Normal.scroll("pageUp"); });
-//
-// // Next/Prev Page
-// map('K', '[[');
-// map('J', ']]');
-//
-// // Open Chrome Flags
-// mapkey('gF', '#12Open Chrome Flags', () => { tabOpenLink("chrome://flags/"); });
-//
-// // --- Tabs ---
-// // Tab Delete/Undo
-// map('D', 'x');
-// mapkey('d', '#3Close current tab', () => { RUNTIME("closeTab"); });
-// mapkey('u', '#3Restore closed tab', () => { RUNTIME("openLast"); });
-//
-// // Move Tab Left/Right w/ one press
-// map('>', '>>');
-// map('<', '<<');
-//
-// // Tab Next/Prev
-// map('<Alt-j>', 'R');
-// map('<Alt-k>', 'E');
-//
-// // --- Misc ---
-// // Yank URL w/ one press (disables other yx binds)
-// map('y', 'yy');
-//
-// // Change focused frame
-// map('gf', 'w');
-
 // ---- Search Engines -----
-// removeSearchAlias('b', 's');
-// removeSearchAlias('d', 's');
+removeSearchAlias('b', 's');
+removeSearchAlias('d', 's');
 // removeSearchAlias('g', 's');
-// removeSearchAlias('h', 's');
-// removeSearchAlias('w', 's');
+removeSearchAlias('h', 's');
+removeSearchAlias('w', 's');
 // removeSearchAlias('y', 's');
-// removeSearchAlias('s', 's');
+removeSearchAlias('s', 's');
 
-// addSearchAlias('r', 'reddit', 'https://libreddit.spike.codes/r/', 's');
+
+// ---- Map -----
+mapkey("<Ctrl-u>", "#2Scroll half page up", Normal.scroll.bind(Normal, "pageUp"), { repeatIgnore: true, });
+mapkey("<Ctrl-d>", "#2Scroll half page down", Normal.scroll.bind(Normal, "pageDown"), { repeatIgnore: true, });
+mapkey("<Space>r", '#4Reload the page', function() {
+    RUNTIME("reloadTab", { nocache: false });
+}, { repeatIgnore: true, });
+mapkey("<Space>tp", '#3Go one tab left', function() {
+    RUNTIME("previousTab");
+}, { repeatIgnore: true, });
+mapkey("<Space>tn", '#3Go one tab right', function() {
+    RUNTIME("nextTab");
+}, { repeatIgnore: true, });
+
+// TODO make work and use instead of alias
+// mapkey("<Space>tc", '#3Choose a tab', function() {
+//    Front.chooseTab();
+// });
+map('<Space>tt', 'T');
+if (!getBrowserName().startsWith("Safari")) {
+    mapkey('<Space>ff', '#8Open a URL', function() {
+        Front.openOmnibar({type: "URLs"});
+    });
+    mapkey('<Space><Space>', '#8Open a URL in current tab', function() {
+        Front.openOmnibar({type: "URLs", tabbed: false});
+    });
+    mapkey('<Space>fr', '#8Open recently closed URL', function() {
+        Front.openOmnibar({type: "RecentlyClosed"});
+    });
+}
+mapkey('<Space>c', '#3Duplicate current tab in background', function() {
+    RUNTIME("duplicateTab", {active: false});
+});
+
+mapkey("<Space>fg", '#8Open Search with alias g', () => {
+    Front.openOmnibar({type: "SearchEngine", extra: 'g'});
+});
+mapkey("<Space>fy", '#8Open Search with alias y', () => {
+    Front.openOmnibar({type: "SearchEngine", extra: 'y'});
+});
+
+// open a link from current page in new active tab
+mapkey('F', '#1Open a link in non-active new tab', function() {
+    Hints.create("", Hints.dispatchMouseClick, {tabbed: true, active: false});
+});
+
+mapkey('p', '#4Go back in history', function() {
+    history.go(-1);
+}, {repeatIgnore: true});
+mapkey('n', '#4Go forward in history', function() {
+    history.go(1);
+}, {repeatIgnore: true});
+
+mapkey('<Space>xx', '#3Close current tab', function() {
+    RUNTIME("closeTab");
+});
+mapkey('<Space>xp', '#3Close tab on left', function() {
+    RUNTIME("closeTabLeft");
+});
+mapkey('<Space>xn', '#3Close tab on right', function() {
+    RUNTIME("closeTabRight");
+});
+
+map("<Space>e", "$");
+map("<Space>s", "/");
+map("<Space>n", "*");
+vmap("<Space>e", "$");
+vmap("<Space>s", "/");
+vmap("<Space>n", "*");
+map("<Space>jj", "<Esc>");
+vmap("<Space>jj", "<Esc>");
+imap("jj", "<Esc>");
 
