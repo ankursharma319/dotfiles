@@ -75,6 +75,8 @@ let
         pkgs.iterm2
         pkgs.vscode
         firefox_mac_drv
+        pkgs.yabai
+        pkgs.skhd
     ]);
 
     platform_specific_pkgs = if pkgs.stdenv.isLinux then linux_pkgs else mac_pkgs;
