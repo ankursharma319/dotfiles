@@ -426,7 +426,7 @@ unmap(';di');
 unmap(';e');
 
 // choose which scrollarea to focus on for scrolling
-unmap(';fs');
+// unmap(';fs');
 
 // gather filtered tabs into current window
 unmap(';gt');
@@ -768,6 +768,8 @@ mapkey("<Space>tn", '#3Go one tab right', function() {
 //    Front.chooseTab();
 // });
 map('<Space>tt', 'T');
+map('<Space>cs', ';fs')
+
 if (!getBrowserName().startsWith("Safari")) {
     mapkey('<Space>ff', '#8Open a URL', function() {
         Front.openOmnibar({type: "URLs"});
@@ -779,7 +781,7 @@ if (!getBrowserName().startsWith("Safari")) {
         Front.openOmnibar({type: "RecentlyClosed"});
     });
 }
-mapkey('<Space>c', '#3Duplicate current tab in background', function() {
+mapkey('<Space>cd', '#3Duplicate current tab in background', function() {
     RUNTIME("duplicateTab", {active: false});
 });
 
