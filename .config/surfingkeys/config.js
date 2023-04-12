@@ -756,10 +756,10 @@ mapkey("<Ctrl-d>", "#2Scroll half page down", Normal.scroll.bind(Normal, "pageDo
 mapkey("<Space>r", '#4Reload the page', function() {
     RUNTIME("reloadTab", { nocache: false });
 }, { repeatIgnore: true, });
-mapkey("<Space>tp", '#3Go one tab left', function() {
+mapkey("<Shift-Space><Shift-Space>", '#3Go one tab left', function() {
     RUNTIME("previousTab");
 }, { repeatIgnore: true, });
-mapkey("<Space>tn", '#3Go one tab right', function() {
+mapkey("<Space><Space>", '#3Go one tab right', function() {
     RUNTIME("nextTab");
 }, { repeatIgnore: true, });
 
@@ -767,21 +767,21 @@ mapkey("<Space>tn", '#3Go one tab right', function() {
 // mapkey("<Space>tc", '#3Choose a tab', function() {
 //    Front.chooseTab();
 // });
-map('<Space>tt', 'T');
+map('<Space>ft', 'T');
 map('<Space>cs', ';fs')
 
 if (!getBrowserName().startsWith("Safari")) {
     mapkey('<Space>ff', '#8Open a URL', function() {
         Front.openOmnibar({type: "URLs"});
     });
-    mapkey('<Space><Space>', '#8Open a URL in current tab', function() {
+    mapkey('<Space>fF', '#8Open a URL in current tab', function() {
         Front.openOmnibar({type: "URLs", tabbed: false});
     });
     mapkey('<Space>fr', '#8Open recently closed URL', function() {
         Front.openOmnibar({type: "RecentlyClosed"});
     });
 }
-mapkey('<Space>cd', '#3Duplicate current tab in background', function() {
+mapkey('<Space>fd', '#3Duplicate current tab in background', function() {
     RUNTIME("duplicateTab", {active: false});
 });
 
