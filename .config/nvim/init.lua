@@ -807,6 +807,7 @@ require 'nvim-treesitter.configs'.setup {
         "javascript",
         "typescript",
         "python",
+        "rust",
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -1145,4 +1146,16 @@ lspconfig["lemminx"].setup {
 lspconfig["pyright"].setup {
     on_attach = my_on_attach,
     capabilities = capabilities,
+}
+
+lspconfig["rust_analyzer"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+    settings = {
+        ['rust-analyzer'] = {
+            diagnostics = {
+                enable = true;
+            }
+        }
+    }
 }
