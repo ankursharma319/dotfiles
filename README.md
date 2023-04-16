@@ -1,6 +1,14 @@
 # Dotfiles
 
-Clone into some directory and create softlinks:
+My dotfiles for configuration of both linux and macos devices. Includes packages provisioned via nix home-manager. Includes configuration of neovim, i3wm, alacritty, tmux and so on.
+
+## Screenshots
+
+![Ubuntu i3wm with alacritty, tmux, neovim](./ubuntu_i3_screenshot.png)
+
+## Usage
+
+Clone into some directory and create softlinks for whatever you need:
 
 ```bash
 ln -s /home/ankurs4/src/dotfiles/.vimrc /home/ankurs4/.vimrc
