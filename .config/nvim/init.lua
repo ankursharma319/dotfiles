@@ -901,7 +901,7 @@ cmp.setup({
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
-    preselect = cmp.PreselectMode.Item,
+    preselect = cmp.PreselectMode.None,
     completion = {
         completeopt = 'menu,menuone,noinsert,noselect'
     },
