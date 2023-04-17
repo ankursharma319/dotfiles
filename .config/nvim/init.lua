@@ -481,7 +481,7 @@ require('lualine').setup({
     },
     sections = {
         lualine_a = { 'mode' },
-        lualine_b = {'branch', 'diff', 'diagnostics'},
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = {
             "filename",
             {
@@ -664,18 +664,18 @@ require('telescope').setup {
         },
         mappings = {
             n = {
-                    ["<C-h>"] = "which_key",
-                    ["<leader>jj"] = actions.close,
-                    ["<C-u>"] = actions.preview_scrolling_up,
-                    ["<C-d>"] = actions.preview_scrolling_down,
-                    ["<leader>tp"] = require("telescope.actions.layout").toggle_preview,
-                    ["<leader>q"] = actions.send_selected_to_qflist + actions.open_qflist,
-                    ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+                ["<C-h>"] = "which_key",
+                ["<leader>jj"] = actions.close,
+                ["<C-u>"] = actions.preview_scrolling_up,
+                ["<C-d>"] = actions.preview_scrolling_down,
+                ["<leader>tp"] = require("telescope.actions.layout").toggle_preview,
+                ["<leader>q"] = actions.send_selected_to_qflist + actions.open_qflist,
+                ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
             },
             i = {
-                    ["<C-h>"] = "which_key",
-                    ['<C-u>'] = false,
-                    ['<C-d>'] = false,
+                ["<C-h>"] = "which_key",
+                ['<C-u>'] = false,
+                ['<C-d>'] = false,
             }
         },
     },
@@ -683,7 +683,7 @@ require('telescope').setup {
         buffers = {
             mappings = {
                 n = {
-                        ["D"] = require("telescope.actions").delete_buffer,
+                    ["D"] = require("telescope.actions").delete_buffer,
                 }
             }
         }
@@ -709,13 +709,12 @@ local live_grep_with_args = function(opts)
     local flatten = vim.tbl_flatten
     opts = opts or {}
     opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
-    opts.shortcuts = opts.shortcuts
-        or {
-                ["l"] = "*.lua",
-                ["v"] = "*.vim",
-                ["n"] = "*.{vim,lua}",
-                ["c"] = "*.c",
-        }
+    opts.shortcuts = opts.shortcut or {
+        ["l"] = "*.lua",
+        ["v"] = "*.vim",
+        ["n"] = "*.{vim,lua}",
+        ["c"] = "*.c",
+    }
     opts.pattern = opts.pattern or "%s"
 
     local custom_grep = finders.new_async_job {
@@ -934,18 +933,18 @@ cmp.setup({
     },
     mapping = cmp.mapping.preset.insert({
         -- navigate items on the list
-            ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
-            ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
-            ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
-            ['<Down>'] = cmp.mapping.select_next_item(select_opts),
+        ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
+        ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+        ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
+        ['<Down>'] = cmp.mapping.select_next_item(select_opts),
         -- scroll up and down in the completion documentation
         -- ['<C-f>'] = cmp.mapping.scroll_docs(5),
-            ['<C-u>'] = cmp.mapping.scroll_docs(-5),
-            ['<C-d>'] = cmp.mapping.scroll_docs(5),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-5),
+        ['<C-d>'] = cmp.mapping.scroll_docs(5),
         -- toggle completion
         -- bring up the completion menu, kind of similar to as hover (K) and <C-h>
         ---@diagnostic disable-next-line: unused-local
-            ['<C-Space>'] = cmp.mapping(function(fallback)
+        ['<C-Space>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.abort()
             else
@@ -954,13 +953,13 @@ cmp.setup({
         end),
         -- Accept currently selected item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-            ['<CR>'] = cmp.mapping.confirm {
+        ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace, -- or Insert
             select = false,
         },
-            ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-            ['<Tab>'] = nil,
-            ['<S-Tab>'] = nil,
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = nil,
+        ['<S-Tab>'] = nil,
         -- -- go to next placeholder in the snippet
         -- ['<C-f>'] = cmp.mapping(function(fallback)
         --     if luasnip.jumpable(1) then
@@ -1154,7 +1153,7 @@ lspconfig["rust_analyzer"].setup {
     settings = {
         ['rust-analyzer'] = {
             diagnostics = {
-                enable = true;
+                enable = true,
             }
         }
     }
