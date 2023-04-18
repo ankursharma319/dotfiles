@@ -800,7 +800,7 @@ mapkey('F', '#1Open a link in non-active new tab', function() {
 mapkey('p', '#4Go back in history', function() {
     history.go(-1);
 }, {repeatIgnore: true});
-mapkey('n', '#4Go forward in history', function() {
+mapkey('P', '#4Go forward in history', function() {
     history.go(1);
 }, {repeatIgnore: true});
 
