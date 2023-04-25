@@ -70,7 +70,6 @@ let
         pkgs.rofi-unwrapped
         pkgs.keychain
         pkgs.firefox
-        pkgs.nixgl.auto.nixGLDefault
     ]);
 
     mac_pkgs = [] ++ (if !install_gui_apps then [] else [

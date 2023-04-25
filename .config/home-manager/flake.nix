@@ -1,7 +1,7 @@
 # Run as:
 # cd ~/.config/home-manager && nix run . switch -- --flake .
 # nix run ~/src/dotfiles/.config/home-manager#homeConfigurations.ankurs4.activationPackage
-# for nixGL will need --impure flag on nix run cmd
+
 {
   description = "Home Manager configuration of Ankur";
 
@@ -13,16 +13,10 @@
     };
     flake-utils = {
         url = "github:numtide/flake-utils";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixgl = {
-      url = "github:guibou/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, nixgl, ... }: {
+  outputs = { self, nixpkgs, home-manager, flake-utils, ... }: {
     defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
     defaultPackage.x86_64-darwin = home-manager.defaultPackage.x86_64-darwin;
     defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
@@ -33,7 +27,6 @@
       pkgs = import nixpkgs {
           system = builtins.abort "TODO change arch aarch64-darwin";
           config.allowUnfree = true;
-          overlays = [ nixgl.overlay ];
       };
 
       # passed to home.nix
