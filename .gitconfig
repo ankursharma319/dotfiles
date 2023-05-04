@@ -8,3 +8,4 @@
     excludesfile = ~/.global_gitignore
 [alias]
   rank = "shortlog -s -n --no-merges"
+  tagcommit = rev-list -n 1
