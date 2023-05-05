@@ -55,6 +55,8 @@ if [ -f $NIX_GLIBC_LOCALE_ARCHIVE_FILE ]; then
     export LOCALE_ARCHIVE=$NIX_GLIBC_LOCALE_ARCHIVE_FILE
 fi
 
+alias nixGL="nix run --impure github:guibou/nixGL --"
+
 export CURRENT_EP=polaris-23.rd.cisco.com
 allt() { ssh root@$CURRENT_EP 'tail -f /var/log/eventlog/all.log | grep -i -e macro -e cuil -e ankur'; }
 allc() { ssh root@$CURRENT_EP 'cat /var/log/eventlog/all.log | grep -i -e macro -e cuil -e ankur -e lyra -e wx2 -e config'; }

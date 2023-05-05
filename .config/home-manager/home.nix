@@ -56,6 +56,8 @@ let
                 "VictorMono"
             ];
         })
+        # view pdf and images - use as `nixGL mupdf file.png`
+        pkgs.mupdf
     ]);
 
     linux_pkgs = [
