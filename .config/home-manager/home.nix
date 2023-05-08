@@ -40,6 +40,7 @@ let
         pkgs.cmake-language-server
         pkgs.nodePackages.typescript
         pkgs.nodePackages.typescript-language-server
+        pkgs.nodePackages.svelte-language-server
         pkgs.nodePackages.vscode-langservers-extracted # contains html,css,json,eslint
         pkgs.rnix-lsp
         lemminx_drv

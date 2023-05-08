@@ -821,6 +821,7 @@ require 'nvim-treesitter.configs'.setup {
         "typescript",
         "python",
         "rust",
+        "svelte",
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -1171,4 +1172,9 @@ lspconfig["rust_analyzer"].setup {
             }
         }
     }
+}
+
+lspconfig["svelte"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
 }
