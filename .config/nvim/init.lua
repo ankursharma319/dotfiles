@@ -1047,7 +1047,7 @@ require "fidget".setup {}
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-vim.lsp.set_log_level("info")
+vim.lsp.set_log_level("WARN")
 
 local lspconfig = require('lspconfig')
 
@@ -1095,6 +1095,9 @@ local my_on_attach = function(client, bufnr)
             vim.lsp.buf.formatting()
         end
     end, { desc = 'Format current buffer with LSP' })
+
+    -- disable semantic tokens, which is essentially same as treesitter
+    client.server_capabilities.semanticTokensProvider = nil
 
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
