@@ -768,6 +768,8 @@ local live_grep_with_args = function(opts)
         cwd = opts.cwd,
     }
 
+    -- Example of using this grep
+    -- embeddeddapp  functional/helmet/**  !*.cpp
     pickers.new(opts, {
         debounce = 100,
         prompt_title = "Live Grep (with shortcuts)",
