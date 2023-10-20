@@ -10,8 +10,12 @@
 # and wait til treesitter stuff is installed.
 # On linux had more success with simple `nix-shell -p gcc`
 
-{ pkgs ? import <nixpkgs_unstable> {} }:
-
+{
+  pkgs ? import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/ff0a5a776b56e0ca32d47a4a47695452ec7f7d80.tar.gz";
+    sha256 = "1ac53wb5qpbhcmb0lzfl8wn1mnzw82i9355h9vq3lxd47g7zy3sv";
+  }) {}
+}:
 pkgs.mkShell {
     buildInputs = [
         pkgs.git

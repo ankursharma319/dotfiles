@@ -123,7 +123,7 @@ require("lazy").setup({
     -- ui
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.1',
+        tag = '0.1.4',
         dependencies = { 'nvim-lua/plenary.nvim' },
     },
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
@@ -149,7 +149,11 @@ require("lazy").setup({
     { "lewis6991/gitsigns.nvim" },
 
     -- Add indentation guides even on blank lines
-    { "lukas-reineke/indent-blankline.nvim" },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {}
+    },
     -- "gc" to comment visual regions/lines
     { "numToStr/Comment.nvim" },
     -- highlight trailing space in red
@@ -195,7 +199,12 @@ require("lazy").setup({
     -- Additional lua configuration, makes nvim stuff amazing!
     { "folke/neodev.nvim" },
     -- Useful status updates for LSP
-    { "j-hui/fidget.nvim" },
+    {
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+        event = "LspAttach",
+        opts = {},
+    },
 
     -- for status bar to show current code context
     {
@@ -515,13 +524,6 @@ require('lualine').setup({
 
 -- Enable Comment.nvim
 require('Comment').setup()
-
--- Enable `lukas-reineke/indent-blankline.nvim`
--- See `:help indent_blankline.txt`
-require('indent_blankline').setup {
-    char = '┊',
-    show_trailing_blankline_indent = false,
-}
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -1042,8 +1044,6 @@ cmp.event:on(
 
 -- Setup neovim lua configuration
 require('neodev').setup()
--- Setup standalone UI for nvim-lsp progress.
-require "fidget".setup {}
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
