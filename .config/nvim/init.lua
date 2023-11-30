@@ -631,6 +631,12 @@ require("nvim-tree").setup({
             },
         },
     },
+    view = {
+        width = 40,
+    },
+    filters = {
+        git_ignored = false,
+    },
 })
 
 -- auto startup nvim-tree if opened a directory
@@ -783,8 +789,12 @@ end
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
-vim.keymap.set('n', '<leader>fa', wrap(builtin.find_files, { hidden = true }),
-    { desc = '[F]ind [A]ll [F]iles including hidden .dot' })
+vim.keymap.set(
+    'n', '<leader>fa', wrap(builtin.find_files, {
+        hidden = true, no_ignore = true, no_ignore_parent = true
+    }),
+    { desc = '[F]ind [A]ll [F]iles including hidden .dot' }
+)
 vim.keymap.set('n', '<leader>fF', builtin.git_files, { desc = '[F]ind [G]it [F]iles' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
 vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
