@@ -1198,3 +1198,8 @@ lspconfig["tailwindcss"].setup {
     on_attach = my_on_attach,
     capabilities = capabilities,
 }
+
+lspconfig["prismals"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}

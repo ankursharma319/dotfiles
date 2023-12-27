@@ -42,6 +42,7 @@ let
         pkgs.nodePackages.typescript-language-server
         pkgs.nodePackages.svelte-language-server
         pkgs.nodePackages."@tailwindcss/language-server"
+        pkgs.nodePackages."@prisma/language-server"
         pkgs.nodePackages.vscode-langservers-extracted # contains html,css,json,eslint
         pkgs.rnix-lsp
         lemminx_drv
