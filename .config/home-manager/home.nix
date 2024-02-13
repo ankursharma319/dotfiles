@@ -35,7 +35,7 @@ let
 
         # Language servers
         pkgs.nodePackages.pyright
-        pkgs.clang-tools_15
+        pkgs.clang-tools_17
         pkgs.lua-language-server
         pkgs.cmake-language-server
         pkgs.nodePackages.typescript
