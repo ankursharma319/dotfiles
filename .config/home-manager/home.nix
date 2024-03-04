@@ -31,6 +31,7 @@ let
         pkgs.ncdu
         pkgs.vim
         pkgs.jq
+        pkgs.nodejs_21
         pkgs.nodePackages.livedown
 
         # Language servers

@@ -5,6 +5,9 @@
 -- unmap old mappings to space
 vim.keymap.set("n", "<SPACE>", "<Nop>", { noremap = true })
 
+vim.keymap.set("i", "<C-u>", "<Nop>", { noremap = true })
+vim.keymap.set("i", "<C-i>", "<Nop>", { noremap = true })
+
 -- default is left leaning slash
 -- use space as a the leader key
 vim.g.mapleader = ' '
@@ -193,6 +196,12 @@ require("lazy").setup({
     { "hrsh7th/cmp-nvim-lsp" },
     -- lua neovim api autocompletion sources
     { "hrsh7th/cmp-nvim-lua" },
+    {
+        "zbirenbaum/copilot-cmp",
+        config = function ()
+            require("copilot_cmp").setup()
+        end
+    },
 
     -- LSP
     { "neovim/nvim-lspconfig" },
@@ -205,6 +214,19 @@ require("lazy").setup({
         event = "LspAttach",
         opts = {},
     },
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({
+                suggestion = { enabled = false },
+                panel = { enabled = false },
+            })
+        end,
+    },
+    { 'AndreM222/copilot-lualine' },
+
 
     -- for status bar to show current code context
     {
@@ -516,7 +538,10 @@ require('lualine').setup({
                 end
             },
         },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_x = {
+            {'copilot', show_colors = true },
+            'encoding', 'fileformat', 'filetype'
+        },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },
     }
@@ -1008,11 +1033,12 @@ cmp.setup({
         -- end, {'i', 's'}),
     }),
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip', option = { show_autosnippets = false } }, -- For luasnip users.
-        { name = 'nvim_lua' },
-        { name = 'path' },
-        { name = 'buffer',  option = { keyword_length = 3 } },
+        { name = "copilot", group_index = 1 },
+        { name = 'nvim_lsp', group_index = 2 },
+        { name = 'luasnip', group_index = 3, option = { show_autosnippets = false } }, -- For luasnip users.
+        { name = 'nvim_lua', group_index = 3 },
+        { name = 'buffer',  group_index = 3, option = { keyword_length = 3 } },
+        { name = 'path', group_index = 4 },
     })
 })
 
