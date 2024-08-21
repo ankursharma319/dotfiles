@@ -861,6 +861,7 @@ require 'nvim-treesitter.configs'.setup {
         "python",
         "rust",
         "svelte",
+        "java",
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -1163,7 +1164,7 @@ lspconfig["cmake"].setup {
     capabilities = capabilities,
 }
 
-lspconfig["rnix"].setup {
+lspconfig["nil_ls"].setup {
     on_attach = my_on_attach,
     capabilities = capabilities,
 }
@@ -1226,6 +1227,11 @@ lspconfig["tailwindcss"].setup {
 }
 
 lspconfig["prismals"].setup {
+    on_attach = my_on_attach,
+    capabilities = capabilities,
+}
+
+lspconfig["jdtls"].setup {
     on_attach = my_on_attach,
     capabilities = capabilities,
 }
