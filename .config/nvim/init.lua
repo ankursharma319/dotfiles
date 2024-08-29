@@ -511,6 +511,9 @@ vim.o.wildmode = 'list:longest'
 -- Wildmenu will ignore files with these extensions.
 vim.o.wildignore = '*.o,*.obj,*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx'
 
+-- treat .def files as python code
+vim.api.nvim_command('autocmd BufRead,BufNewFile *.def set filetype=python')
+
 ----------------------------
 -- plugins stuff (part 2)
 ----------------------------
