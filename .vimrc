@@ -75,6 +75,12 @@ nnoremap <leader>N g#
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
+" Encoding
+set encoding=utf-8
+
+" solve error https://stackoverflow.com/questions/18321538/vim-error-e474-invalid-argument-listchars-tab-trail
+scriptencoding utf-8
+
 " Enable type file detection. Vim will be able to try to detect the type of file in use.
 filetype on
 
@@ -194,9 +200,6 @@ set background=dark
 " https://stackoverflow.com/questions/6488683/how-to-change-the-cursor-between-normal-and-insert-modes-in-vim
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
-
-" Encoding
-set encoding=utf-8
 
 " Rendering
 set ttyfast
