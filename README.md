@@ -11,6 +11,7 @@ My dotfiles for configuration of both linux and macos devices. Includes packages
 Clone into some directory and create softlinks for whatever you need:
 
 ```bash
+mkdir -p /home/ankurs4/.config
 ln -s /home/ankurs4/src/dotfiles/.vimrc /home/ankurs4/.vimrc
 ln -s /home/ankurs4/src/dotfiles/.config/nvim /home/ankurs4/.config/nvim
 ln -s /home/ankurs4/src/dotfiles/.tmux.conf /home/ankurs4/.tmux.conf
@@ -41,7 +42,7 @@ ln -s /home/ankurs4/src/dotfiles/.config/Code/User/settings.json /home/ankurs4/.
 ln -s /home/ankurs4/src/dotfiles/.config/Code/User/keybindings.json /home/ankurs4/.config/Code/User/keybindings.json
 # on mac
 ln -s /Users/ankurs4/src/dotfiles/.config/Code/User/settings.json "/Users/ankurs4/Library/Application Support/Code/User/settings.json"
-ln -s /Users/ankurs4/src/dotfiles/.config/Code/User/keybindings.json "Users/ankurs4/Library/Application Support/Code/User/keybindings.json
+ln -s /Users/ankurs4/src/dotfiles/.config/Code/User/keybindings.json "Users/ankurs4/Library/Application Support/Code/User/keybindings.json"
 ```
 
 For home-manager stuff, install nix and run `nix run ~/src/dotfiles/.config/home-manager#homeConfigurations.ankurs4.activationPackage`

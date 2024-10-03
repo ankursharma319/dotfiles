@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   pname = "Firefox";
-  version = "111.0.1";
+  version = "130.0";
 
   buildInputs = [ undmg ];
   sourceRoot = ".";
@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     name = "Firefox-${version}.dmg";
     url = "https://ftp.mozilla.org/pub/firefox/releases/${version}/mac/en-GB/Firefox%20${version}.dmg";
-    sha256 = "EutDYy8ejLc6MaoBMZLzCb9JqVcSZPnkdV72mkJc4vQ=";
+    sha256 = "ipc40wnDcC+W/XrzvxA1qF8xpBS5DaPLfKLJk+fIOSY=";
   };
 
   meta = with lib; {
