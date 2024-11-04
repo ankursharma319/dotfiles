@@ -32,6 +32,8 @@ ln -s /home/ankurs4/src/dotfiles/.config/rofi /home/ankurs4/.config/rofi
 ln -s /home/ankurs4/src/dotfiles/.yabairc /home/ankurs4/.yabairc
 ln -s /home/ankurs4/src/dotfiles/.config/skhd /home/ankurs4/.config/skhd
 ln -s /home/ankurs4/src/dotfiles/.config/spacebar /home/ankurs4/.config/spacebar
+mkdir -p /home/ankurs4/.docker
+ln -s /home/ankurs4/src/dotfiles/.docker/config.json /home/ankurs4/.docker/config.json
 ```
 
 For VsCode:

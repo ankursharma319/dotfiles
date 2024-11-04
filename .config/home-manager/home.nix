@@ -34,6 +34,7 @@ let
         pkgs.nodejs_22
         pkgs.nodePackages.livedown
         pkgs.jdk22
+        pkgs.colima
 
         # Language servers
         pkgs.pyright
