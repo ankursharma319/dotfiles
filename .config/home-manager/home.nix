@@ -25,15 +25,15 @@ let
         pkgs.tree
         pkgs.ripgrep
         pkgs.lemonade
-        pkgs.python311
+        pkgs.python313
         pkgs.neovim
         pkgs.tmux
         pkgs.ncdu
         pkgs.vim
         pkgs.jq
-        pkgs.nodejs_22
+        pkgs.nodejs_23
         pkgs.nodePackages.livedown
-        pkgs.jdk22
+        pkgs.jdk23
         pkgs.colima
 
         # Language servers
@@ -54,15 +54,12 @@ let
         pkgs.alacritty
         # fonts
         pkgs.fontconfig
-        (pkgs.nerdfonts.override {
-            fonts = [
-                "CascadiaCode"
-                "DroidSansMono"
-                "FiraCode"
-                "Hack"
-                "VictorMono"
-            ];
-        })
+        pkgs.nerd-fonts._0xproto
+        pkgs.nerd-fonts.droid-sans-mono
+        pkgs.cascadia-code
+        pkgs.nerd-fonts.fira-code
+        pkgs.nerd-fonts.hack
+        pkgs.nerd-fonts.victor-mono
         # view pdf and images - use as `nixGL mupdf file.png`
         pkgs.mupdf
     ]);
@@ -82,9 +79,9 @@ let
     ]);
 
     mac_pkgs = [] ++ (if !install_gui_apps then [] else [
-        pkgs.iterm2
-        pkgs.vscode
-        firefox_mac_drv
+        # pkgs.iterm2
+        # pkgs.vscode
+        # firefox_mac_drv
         pkgs.yabai
         pkgs.skhd
     ]);

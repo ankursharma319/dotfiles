@@ -11,29 +11,29 @@ My dotfiles for configuration of both linux and macos devices. Includes packages
 Clone into some directory and create softlinks for whatever you need:
 
 ```bash
-mkdir -p /home/ankurs4/.config
-ln -s /home/ankurs4/src/dotfiles/.vimrc /home/ankurs4/.vimrc
-ln -s /home/ankurs4/src/dotfiles/.config/nvim /home/ankurs4/.config/nvim
-ln -s /home/ankurs4/src/dotfiles/.tmux.conf /home/ankurs4/.tmux.conf
-ln -s /home/ankurs4/src/dotfiles/.bashrc /home/ankurs4/.bashrc
-ln -s /home/ankurs4/src/dotfiles/.bash_profile /home/ankurs4/.bash_profile
-ln -s /home/ankurs4/src/dotfiles/.zshrc /home/ankurs4/.zshrc
-ln -s /home/ankurs4/src/dotfiles/.config/nix /home/ankurs4/.config/nix
-ln -s /home/ankurs4/src/dotfiles/.config/nixpkgs /home/ankurs4/.config/nixpkgs
-ln -s /home/ankurs4/src/dotfiles/.config/home-manager /home/ankurs4/.config/home-manager
-ln -s /home/ankurs4/src/dotfiles/.nix-channels /home/ankurs4/.nix-channels
-ln -s /home/ankurs4/src/dotfiles/.config/lemonade.toml /home/ankurs4/.config/lemonade.toml
-ln -s /home/ankurs4/src/dotfiles/.gitconfig /home/ankurs4/.gitconfig
-ln -s /home/ankurs4/src/dotfiles/.global_gitignore /home/ankurs4/.global_gitignore
-ln -s /home/ankurs4/src/dotfiles/.config/alacritty /home/ankurs4/.config/alacritty
-ln -s /home/ankurs4/src/dotfiles/.config/i3 /home/ankurs4/.config/i3
-ln -s /home/ankurs4/src/dotfiles/.config/i3status /home/ankurs4/.config/i3status
-ln -s /home/ankurs4/src/dotfiles/.config/rofi /home/ankurs4/.config/rofi
-ln -s /home/ankurs4/src/dotfiles/.yabairc /home/ankurs4/.yabairc
-ln -s /home/ankurs4/src/dotfiles/.config/skhd /home/ankurs4/.config/skhd
-ln -s /home/ankurs4/src/dotfiles/.config/spacebar /home/ankurs4/.config/spacebar
-mkdir -p /home/ankurs4/.docker
-ln -s /home/ankurs4/src/dotfiles/.docker/config.json /home/ankurs4/.docker/config.json
+mkdir -p /Users/ankur.sharma/.config
+ln -s /Users/ankur.sharma/src/dotfiles/.vimrc /Users/ankur.sharma/.vimrc
+ln -s /Users/ankur.sharma/src/dotfiles/.config/nvim /Users/ankur.sharma/.config/nvim
+ln -s /Users/ankur.sharma/src/dotfiles/.tmux.conf /Users/ankur.sharma/.tmux.conf
+ln -s /Users/ankur.sharma/src/dotfiles/.bashrc /Users/ankur.sharma/.bashrc
+ln -s /Users/ankur.sharma/src/dotfiles/.bash_profile /Users/ankur.sharma/.bash_profile
+ln -s /Users/ankur.sharma/src/dotfiles/.zshrc /Users/ankur.sharma/.zshrc
+ln -s /Users/ankur.sharma/src/dotfiles/.config/nix /Users/ankur.sharma/.config/nix
+ln -s /Users/ankur.sharma/src/dotfiles/.config/nixpkgs /Users/ankur.sharma/.config/nixpkgs
+ln -s /Users/ankur.sharma/src/dotfiles/.config/home-manager /Users/ankur.sharma/.config/home-manager
+ln -s /Users/ankur.sharma/src/dotfiles/.nix-channels /Users/ankur.sharma/.nix-channels
+ln -s /Users/ankur.sharma/src/dotfiles/.config/lemonade.toml /Users/ankur.sharma/.config/lemonade.toml
+ln -s /Users/ankur.sharma/src/dotfiles/.gitconfig /Users/ankur.sharma/.gitconfig
+ln -s /Users/ankur.sharma/src/dotfiles/.global_gitignore /Users/ankur.sharma/.global_gitignore
+ln -s /Users/ankur.sharma/src/dotfiles/.config/alacritty /Users/ankur.sharma/.config/alacritty
+ln -s /Users/ankur.sharma/src/dotfiles/.config/i3 /Users/ankur.sharma/.config/i3
+ln -s /Users/ankur.sharma/src/dotfiles/.config/i3status /Users/ankur.sharma/.config/i3status
+ln -s /Users/ankur.sharma/src/dotfiles/.config/rofi /Users/ankur.sharma/.config/rofi
+ln -s /Users/ankur.sharma/src/dotfiles/.yabairc /Users/ankur.sharma/.yabairc
+ln -s /Users/ankur.sharma/src/dotfiles/.config/skhd /Users/ankur.sharma/.config/skhd
+ln -s /Users/ankur.sharma/src/dotfiles/.config/spacebar /Users/ankur.sharma/.config/spacebar
+mkdir -p /Users/ankur.sharma/.docker
+ln -s /Users/ankur.sharma/src/dotfiles/.docker/config.json /Users/ankur.sharma/.docker/config.json
 ```
 
 For VsCode:
@@ -43,8 +43,8 @@ For VsCode:
 ln -s /home/ankurs4/src/dotfiles/.config/Code/User/settings.json /home/ankurs4/.config/Code/User/settings.json
 ln -s /home/ankurs4/src/dotfiles/.config/Code/User/keybindings.json /home/ankurs4/.config/Code/User/keybindings.json
 # on mac
-ln -s /Users/ankurs4/src/dotfiles/.config/Code/User/settings.json "/Users/ankurs4/Library/Application Support/Code/User/settings.json"
-ln -s /Users/ankurs4/src/dotfiles/.config/Code/User/keybindings.json "Users/ankurs4/Library/Application Support/Code/User/keybindings.json"
+ln -s /Users/ankur.sharma/src/dotfiles/.config/Code/User/settings.json "/Users/ankur.sharma/Library/Application Support/Code/User/settings.json"
+ln -s /Users/ankur.sharma/src/dotfiles/.config/Code/User/keybindings.json "/Users/ankur.sharma/Library/Application Support/Code/User/keybindings.json"
 ```
 
 For home-manager stuff, install nix and run `nix run ~/src/dotfiles/.config/home-manager#homeConfigurations.ankurs4.activationPackage`
