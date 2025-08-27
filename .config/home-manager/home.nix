@@ -31,24 +31,25 @@ let
         pkgs.ncdu
         pkgs.vim
         pkgs.jq
-        pkgs.nodejs_23
+        pkgs.nodejs_24
         pkgs.nodePackages.livedown
         pkgs.jdk23
         pkgs.colima
+        pkgs.gemini-cli
 
         # Language servers
         pkgs.pyright
         pkgs.clang-tools_17
         pkgs.lua-language-server
-        pkgs.cmake-language-server
+        # pkgs.cmake-language-server
         pkgs.nodePackages.typescript
         pkgs.nodePackages.typescript-language-server
         pkgs.nodePackages.svelte-language-server
         pkgs.nodePackages."@tailwindcss/language-server"
-        pkgs.nodePackages."@prisma/language-server"
+        # pkgs.nodePackages."@prisma/language-server"
         pkgs.nodePackages.vscode-langservers-extracted # contains html,css,json,eslint
         pkgs.nil
-        lemminx_drv
+        pkgs.lemminx
         pkgs.jdt-language-server
     ] ++ (if !install_gui_apps then [] else [
         pkgs.alacritty
