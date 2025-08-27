@@ -68,6 +68,9 @@ nnoremap <leader>s /
 nnoremap <leader>n g*
 nnoremap <leader>N g#
 
+" Switch to open buffer
+nnoremap <leader><space> :ls<CR>:b<space>
+
 "=================================================================================
 "general
 "=================================================================================
@@ -128,14 +131,23 @@ set listchars=tab:!·,trail:·,precedes:<,extends:>
 " Highlight cursor line underneath the cursor vertically.
 " set cursorcolumn
 
+" Shows a line at particular column
+set colorcolumn=85
+
 " Set shift width to 4 spaces.
 set shiftwidth=4
+
+" Soft tab stop
+set softtabstop=4
 
 " Set tab width to 4 columns.
 set tabstop=4
 
 " Use space characters instead of tabs.
 set expandtab
+
+" Arista specific settings
+" set tabstop=3 shiftwidth=3 softtabstop=3
 
 " Do not save backup files.
 set nobackup
