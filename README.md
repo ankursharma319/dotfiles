@@ -49,6 +49,30 @@ ln -s /Users/ankur.sharma/src/dotfiles/.config/Code/User/keybindings.json "/User
 
 For home-manager stuff, install nix and run `nix run ~/src/dotfiles/.config/home-manager#homeConfigurations.ankurs4.activationPackage`
 
+```bash
+ln -s /home/ankur/src/dotfiles/custom_bashrc /home/ankur/custom_bashrc
+touch ~/.bashrc
+echo "" >> ~/.bashrc
+echo "# --- Custom Bashrc Sourcing ---" >> ~/.bashrc
+echo "" >> ~/.bashrc
+echo "if [ -f \"\$HOME/custom_bashrc\" ]; then" >> ~/.bashrc
+echo "    source \"\$HOME/custom_bashrc\"" >> ~/.bashrc
+echo "fi" >> ~/.bashrc
+```
+
+
+```bash
+ln -s /home/ankur/src/dotfiles/custom_bashrc /home/ankur/custom_bashrc
+touch ~/.bashrc
+echo "" >> ~/.bashrc
+echo "# --- Custom Bashrc Sourcing ---" >> ~/.bashrc
+echo "" >> ~/.bashrc
+echo "if [ -f \"\$HOME/custom_bashrc\" ]; then" >> ~/.bashrc
+echo "    source \"\$HOME/custom_bashrc\"" >> ~/.bashrc
+echo "fi" >> ~/.bashrc
+```
+
+
 ## Notes
 
 For running alacritty on linux machine: `nix run --impure github:guibou/nixGL -- alacritty`
