@@ -70,6 +70,7 @@ let
         pkgs.nettools
         pkgs.traceroute
         pkgs.xclip
+        pkgs.keychain
     ] ++ (if !install_gui_apps then [] else [
         pkgs.i3
         pkgs.i3lock
